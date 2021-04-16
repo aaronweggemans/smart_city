@@ -1,0 +1,177 @@
+{
+    "tracking_data": [
+        {
+            "day": "2021-04-11 21:18:10.239917",
+            "distance": 44,
+            "id": 0,
+            "time": "2021-04-11 21:18:10.239960"
+        },
+        {
+            "day": "2021-04-11 21:18:13.018995",
+            "distance": 52,
+            "id": 1,
+            "time": "2021-04-11 21:18:13.019050"
+        },
+        {
+            "day": "2021-04-11 21:18:15.193776",
+            "distance": 71,
+            "id": 2,
+            "time": "2021-04-11 21:18:15.193834"
+        },
+        {
+            "day": "2021-04-11 21:18:17.403503",
+            "distance": 99,
+            "id": 3,
+            "time": "2021-04-11 21:18:17.403566"
+        },
+        {
+            "day": "2021-04-11 21:18:19.582842",
+            "distance": 65,
+            "id": 4,
+            "time": "2021-04-11 21:18:19.582902"
+        },
+        {
+            "day": "2021-04-11 21:18:21.762300",
+            "distance": 23,
+            "id": 5,
+            "time": "2021-04-11 21:18:21.762342"
+        },
+        {
+            "day": "2021-04-11 21:18:24.191144",
+            "distance": 77,
+            "id": 6,
+            "time": "2021-04-11 21:18:24.191205"
+        },
+        {
+            "day": "2021-04-11 21:18:26.936360",
+            "distance": 37,
+            "id": 7,
+            "time": "2021-04-11 21:18:26.936421"
+        },
+        {
+            "day": "2021-04-11 21:18:29.122584",
+            "distance": 33,
+            "id": 8,
+            "time": "2021-04-11 21:18:29.122644"
+        },
+        {
+            "day": "2021-04-11 21:18:31.323089",
+            "distance": 82,
+            "id": 9,
+            "time": "2021-04-11 21:18:31.323125"
+        },
+        {
+            "day": "2021-04-11 21:18:33.527940",
+            "distance": 67,
+            "id": 10,
+            "time": "2021-04-11 21:18:33.527993"
+        }
+    ],
+    "locations": [
+        {
+            "latitude": 52.494813,
+            "longitude": 5.453970,
+            "name": "Container Landstrekenwijk Lelystad",
+            "tresh_bin_depth": 120
+        },
+        {
+            "latitude": 52.498118,
+            "longitude": 5.071932,
+            "name": "Container Boelenspark Volendam",
+            "tresh_bin_depth": 220
+        },
+        {
+            "latitude": 52.340460,
+            "longitude": 4.864875,
+            "name": "Container F. Roeskestraat Amsterdam",
+            "tresh_bin_depth": 230
+        },
+        {
+            "latitude": 52.256277,
+            "longitude": 5.221814,
+            "name": "Container Stationsweg Laren",
+            "tresh_bin_depth": 390
+        },
+        {
+            "latitude": 52.811366,
+            "longitude": 4.998068,
+            "name": "Container Kerkhoflaan Middenmeer",
+            "tresh_bin_depth": 270
+        },
+        {
+            "latitude": 52.949056,
+            "longitude": 4.762349,
+            "name": "Container Anemonenstraat Den Helder",
+            "tresh_bin_depth": 120
+        },
+        {
+            "latitude": 52.631512,
+            "longitude": 4.750322,
+            "name": "Container Waagplein Alkmaar",
+            "tresh_bin_depth": 350
+        },
+        {
+            "latitude": 50.846480,
+            "longitude": 5.689271,
+            "name": "Container Verwerhoek Maastricht",
+            "tresh_bin_depth": 270
+        },
+        {
+            "latitude": 52.218156,
+            "longitude": 6.908757,
+            "name": "Container Espoortlaan Enschede",
+            "tresh_bin_depth": 230
+        },
+        {
+            "latitude": 53.205749,
+            "longitude": 6.622959,
+            "name": "Container Euvelgunnerweg Groningen",
+            "tresh_bin_depth": 170
+        },
+        {
+            "latitude": 51.502406,
+            "longitude": 3.601299,
+            "name": "Container Essenlaan Middelburg",
+            "tresh_bin_depth": 160
+        }
+    ],
+    "cities": [
+        {
+            "id": 1,
+            "city_name": "Lelystad",
+            "containers": [
+                {
+                    "id": 1,
+                    "street_name": "Rijnland",
+                    "latitude": 52.32325,
+                    "longitude": 4.34364,
+                    "container_depth": 300,
+                    "status": true,
+                    "users": [
+                        1, 2, 3, 4
+                    ],
+                    "tracking_data": [
+                        {
+                            "id": 1,
+                            "remaining_distance": 10,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 12,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 15,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
