@@ -137,12 +137,142 @@
     ],
     "cities": [
         {
-            "id": 1,
+            "city_id": 1,
             "city_name": "Lelystad",
             "containers": [
                 {
-                    "id": 1,
-                    "street_name": "Rijnland",
+                    "street_id": 1,
+                    "street_name": "Landstrekenwijk",
+                    "latitude": 52.494813,
+                    "longitude": 5.453970,
+                    "container_depth": 300,
+                    "status": true,
+                    "users": [
+                        1, 2, 3, 4
+                    ],
+                    "tracking_data": [
+                        {
+                            "id": 1,
+                            "remaining_distance": 10,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 12,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 15,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 2,
+                    "street_name": "Schoener",
+                    "latitude": 52.499966,
+                    "longitude": 5.455585,
+                    "container_depth": 230,
+                    "status": true,
+                    "users": [
+                        1, 2, 3, 4
+                    ],
+                    "tracking_data": [
+                        {
+                            "id": 1,
+                            "remaining_distance": 25,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 34,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 67,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 3,
+                    "street_name": "Hollandse Hout",
+                    "latitude": 52.486876,
+                    "longitude": 5.429104,
+                    "container_depth": 410,
+                    "status": true,
+                    "users": [
+                        1, 2, 3, 4
+                    ],
+                    "tracking_data": [
+                        {
+                            "id": 1,
+                            "remaining_distance": 24,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 67,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 89,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        },
+                        {
+                            "id": 4,
+                            "remaining_distance": 140,
+                            "day": "2021-04-15",
+                            "time": "23:59:59"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 4,
+                    "street_name": "Slotenlaan",
+                    "latitude": 52.493332,
+                    "longitude": 5.484939,
+                    "container_depth": 120,
+                    "status": true,
+                    "users": [
+                        1, 2, 3, 4
+                    ],
+                    "tracking_data": [
+                        {
+                            "id": 1,
+                            "remaining_distance": 90,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 110,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city_id": 2,
+            "city_name": "Volendam",
+            "containers": [
+                {
+                    "street_id": 1,
+                    "street_name": "Boelenspark",
                     "latitude": 52.32325,
                     "longitude": 4.34364,
                     "container_depth": 300,

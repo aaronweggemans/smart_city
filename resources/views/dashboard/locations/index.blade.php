@@ -27,15 +27,19 @@
             <div class="col-md-6">
                 <div class="box data-content p-4">
                     @foreach($locations as $location)
+
                         <div class="row text-white p-1">
                             <div class="col-md-2 text-center">
                                 <i class="fas fa-location-arrow"></i>
                             </div>
                             <div class="col-md-6">
-                                <a class="user-details" href="{{ route('dashboard_location_details', $location['name']) }}">{{ $location['name'] }}</a>
+                                <a class="user-details"
+                                   href="{{ route('dashboard_location_details', $location['city_name']) }}">{{ $location['city_name'] }}</a>
                             </div>
                             <div class="col-md-4">
-                                <p>Lat: {{ substr($location['latitude'], 0, 2) . ' ' .  'Lon: ' . substr($location['longitude'], 0, 1) }}</p>
+                                @foreach($location['containers'] as $container)
+                                    <p>{{ $container['street_name'] }}</p>
+                                @endforeach
                             </div>
                         </div>
                     @endforeach

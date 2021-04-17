@@ -3,41 +3,51 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Kreait\Firebase\Exception\DatabaseException;
 use Kreait\Firebase\Factory;
 
 class Helper extends Model
 {
     public $firebase;
+    public $containers;
     public $container_size_in_height = 230;
 
     /**
      * Makes the connection to your firebase database
      * FirebaseController constructor.
      * Helper constructor.
+     * @param int $city_id
+     * @param int $street_id
+     * @throws DatabaseException
      */
-    public function __construct()
+    public function __construct($city_id = 1, $street_id = 1)
     {
         $db = (new Factory)->withServiceAccount(__DIR__ . '/Http/Controllers/FirebaseKey.json')
             ->withDatabaseUri('https://smartcity-75e0e-default-rtdb.firebaseio.com/');
 
-        $this->firebase = $db->createDatabase();
+        $db_initialize = $db->createDatabase();
+        $this->firebase = collect($db_initialize->getReference('cities')->getValue());
+
+        $collection = collect($db_initialize->getReference('cities')->getValue());
+
+        $containers = collect($collection
+            ->firstWhere('city_id', $city_id)['containers'])
+            ->firstWhere('street_id', $street_id)['tracking_data'];
+
+        $this->containers = $containers;
     }
 
     /**
      * Returns a array with the values in tracking data from the database
      * @return mixed
-     * @throws DatabaseException
      */
     public function firebase_distance_data(): array
     {
-        $reference = $this->firebase->getReference('tracking_data');
-        $array_with_all_tracking_data = $reference->getValue();
-
         $distance_in_array = [];
 
-        foreach ($array_with_all_tracking_data as $firebase_row) {
-            array_push($distance_in_array, $firebase_row['distance']);
+        foreach ($this->containers as $firebase_row) {
+            array_push($distance_in_array, $firebase_row['remaining_distance']);
         }
 
         return $distance_in_array;
@@ -50,12 +60,9 @@ class Helper extends Model
      */
     public function firebase_distance_labels(): array
     {
-        $reference = $this->firebase->getReference('tracking_data');
-        $array_with_all_tracking_data = $reference->getValue();
-
         $dates_in_array = [];
 
-        foreach ($array_with_all_tracking_data as $firebase_row) {
+        foreach ($this->containers as $firebase_row) {
             $push_date = date("Y-m-d", strtotime($firebase_row['day']));
             array_push($dates_in_array, $push_date);
         }
@@ -65,23 +72,19 @@ class Helper extends Model
 
     /**
      * Returns the last row from tracking data
-     * @throws DatabaseException
      */
-    public function firebase_last_row_from_tracking_data(): array
+    public function firebase_get_last_object_from_tracking_data(): array
     {
-        $reference = $this->firebase->getReference('tracking_data');
-        $array_with_all_tracking_data = $reference->getValue();
-        return end($array_with_all_tracking_data);
+        return end($this->containers);
     }
 
     /**
      * Counts how many percent the container is full
-     * @throws DatabaseException
      */
     public function amount_of_percent_trash_bin_full(): int
     {
         // Gets the distance from the last row in the database
-        $distance = $this->firebase_last_row_from_tracking_data()['distance'];
+        $distance = $this->firebase_get_last_object_from_tracking_data()['remaining_distance'];
 
         // Devides the original size from the container through the distance
         $amount_of_times = $this->container_size_in_height / $distance;
@@ -111,22 +114,34 @@ class Helper extends Model
     }
 
     /**
-     * Returns all the locations from the firebase environment
-     * TODO: GO FURTHER HERE MAKE LOCATION LIST
+     * Returns the amount of registered containers
      */
-    public function getAllLocations()
+    public function getAmountOfRegisteredContainer(): int
     {
-        $reference = $this->firebase->getReference('locations');
-        $locations = $reference->getValue();
-        return $locations;
+        $amount_of_containers = 0;
+
+        foreach ($this->firebase as $city) {
+            $amount_of_containers += count($city['containers']);
+        }
+
+        return $amount_of_containers;
     }
 
     /**
-     * Returns the amount of locations counted in the firebase store
-     * @return int
+     * @return Collection
      */
-    public function getAmountOfLocations(): int
+    public function getAllLocations(): Collection
     {
-        return count($this->getAllLocations());
+        return $this->firebase;
+    }
+
+    /**
+     * Returns all the containers based on the city id
+     * @param $city_id
+     * @return mixed
+     */
+    public function getAllStreetsWhere($city_id)
+    {
+        return $this->firebase->firstWhere('city_id', $city_id)['containers'];
     }
 }

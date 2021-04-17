@@ -42,11 +42,37 @@
                 <i class="fa fa-envelope" aria-hidden="true"></i>
             </span>
         </div>
-
         @error('email')
         <small class="text-danger">{{ $message }}</small>
         @enderror
 
+        <div class="wrap-input100 validate-input">
+            <select name="city" class="input100" style="border: none;" onchange="getStreetData(this)" >
+                @foreach ($locations as $location)
+                    <option value="{{ $location['city_id'] }}">{{ $location['city_name'] }}</option>
+                @endforeach
+            </select>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-city" aria-hidden="true"></i>
+            </span>
+        </div>
+        @error('city')
+        <small class="text-danger">{{ $message }}</small>
+        @enderror
+
+        <div class="wrap-input100 validate-input">
+            <select name="street" class="input100" style="border: none;" id="append_streets">
+                <option value=""></option>
+            </select>
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+                <i class="fa fa-city" aria-hidden="true"></i>
+            </span>
+        </div>
+        @error('street')
+        <small class="text-danger">{{ $message }}</small>
+        @enderror
 
         <div class="wrap-input100 validate-input" data-validate="Password is required">
             <input

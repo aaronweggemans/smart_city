@@ -34,8 +34,8 @@
             <div class="col-md-6 col-lg-3">
                 <div class="box bg-success p-3">
                     <i class="font-i fas fa-location-arrow"></i>
-                    <h3>{{ $all_locations }}</h3>
-                    <p class="lead">Locations</p>
+                    <h3>{{ $all_registered_containers }}</h3>
+                    <p class="lead">All containers</p>
                 </div>
             </div>
         </div>

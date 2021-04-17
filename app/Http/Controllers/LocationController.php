@@ -25,7 +25,7 @@ class LocationController extends Controller
     public function __construct()
     {
         $helper = new Helper();
-        $locations_as_array = collect($helper->getAllLocations());
+        $locations_as_array = $helper->getAllLocations();
         $this->locations = $locations_as_array;
     }
 

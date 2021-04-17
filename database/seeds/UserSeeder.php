@@ -22,6 +22,8 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Aaron Weggemans',
                 'role_id' => 1,
+                'city_id' => 1, // Jullie wonen allemaal in Lelystad
+                'street_id' => 1,
                 'email_verified_at' => now(),
                 'email' => 'aaronweggemans@hotmail.nl',
                 'password' => $password,
@@ -30,6 +32,8 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Alex Yip',
                 'role_id' => 1,
+                'city_id' => 1, // Jullie wonen allemaal in Lelystad
+                'street_id' => 1,
                 'email_verified_at' => now(),
                 'email' => 'alexyip@hotmail.nl',
                 'password' => $password,
@@ -38,6 +42,8 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Christian Tol',
                 'role_id' => 1,
+                'city_id' => 1, // Jullie wonen allemaal in Lelystad
+                'street_id' => 1,
                 'email_verified_at' => now(),
                 'email' => 'christiantol@hotmail.nl',
                 'password' => $password,
@@ -46,6 +52,8 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Jovanni Tjon-A-Sam',
                 'role_id' => 1,
+                'city_id' => 1, // Jullie wonen allemaal in Lelystad
+                'street_id' => 1,
                 'email_verified_at' => now(),
                 'email' => 'jovannitjonasam@hotmail.nl',
                 'password' => $password,

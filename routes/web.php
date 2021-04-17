@@ -37,3 +37,5 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
 
 Route::get('/firebase', 'FirebaseController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/ajax/get/streets', 'HomeController@get_streets')->name('ajax_get_streets');
