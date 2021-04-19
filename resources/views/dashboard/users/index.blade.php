@@ -40,12 +40,15 @@
             <div class="box m-4 p-3 data-content">
                 @foreach($users as $user)
                     <div class="row text-white p-2">
-                        <div class="col-md-2 text-center">
+                        <div class="col-md-1 text-center">
                             <i class="fas fa-user"></i>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <a class="user-details"
                                href="{{ route('dashboard_show_user', $user->id) }}">{{ $user->name }}</a>
+                        </div>
+                        <div class="col-md-2">
+                            {{ $user->getCityName() }}
                         </div>
                         <div class="col-md-2">
                             {{ $user->getRoleName() }}

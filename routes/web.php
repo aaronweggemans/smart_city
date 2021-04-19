@@ -22,17 +22,26 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
     // User Resource
-    Route::get('/users', 'UserController@index')->name('dashboard_all_users');
-    Route::get('/user/{id}', 'UserController@show')->name('dashboard_show_user');
-    Route::post('/user/{id}', 'UserController@update')->name('dashboard_update_user');
-    Route::delete('/user/{id}', 'UserController@destroy')->name('dashboard_remove_user');
+    Route::group(['prefix' => 'users'], function() {
+        Route::get('/', 'UserController@index')->name('dashboard_all_users');
+        Route::get('/{id}', 'UserController@show')->name('dashboard_show_user');
+        Route::post('/{id}', 'UserController@update')->name('dashboard_update_user');
+        Route::delete('/{id}', 'UserController@destroy')->name('dashboard_remove_user');
+    });
 
     // Location Resource
-    Route::get('/locations', 'LocationController@index')->name('dashboard_all_locations');
-    Route::get('/locations/add', 'LocationController@create')->name('dashboard_add_location');
-    Route::get('/locations/{name}', 'LocationController@show')->name('dashboard_location_details');
+    Route::group(['prefix' => 'locations'], function() {
+        Route::get('/', 'LocationController@index')->name('dashboard_all_locations');
+        Route::get('/add', 'LocationController@create')->name('dashboard_add_location');
+        Route::get('/{name}', 'LocationController@show')->name('dashboard_location_details');
+    });
 
-    Route::get('/settings', 'DashboardController@settings')->name('dashboard_settings');
+    // Settings/Account Resource
+    Route::group(['prefix' => 'settings'], function() {
+        Route::get('/', 'AccountController@settings')->name('dashboard_settings');
+        Route::get('/profile-image', 'AccountController@profile_picture')->name('dashboard_change_profile');
+        Route::post('/update-image', 'AccountController@change_picture')->name('dashboard_update_profile_image');
+    });
 });
 
 Route::get('/firebase', 'FirebaseController@index');

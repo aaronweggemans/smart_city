@@ -300,6 +300,105 @@
                             "time": "23:59:53"
                         }
                     ]
+                },
+                {
+                    "street_id": 1,
+                    "street_name": "Leendert Spaanderlaan",
+                    "latitude": 52.496183,
+                    "longitude": 5.058969,
+                    "container_depth": 120,
+                    "status": true,
+                    "users": [
+                        1, 2, 3, 4
+                    ],
+                    "tracking_data": [
+                        {
+                            "id": 1,
+                            "remaining_distance": 56,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 78,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 196,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city_id": 3,
+            "city_name": "Amsterdam",
+            "containers": [
+                {
+                    "street_id": 1,
+                    "street_name": "F. Roeskestraat Amsterdam",
+                    "latitude": 52.340460,
+                    "longitude": 4.864875,
+                    "container_depth": 230,
+                    "status": true,
+                    "users": [
+                        1, 2, 3, 4
+                    ],
+                    "tracking_data": [
+                        {
+                            "id": 1,
+                            "remaining_distance": 23,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 43,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 67,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 2,
+                    "street_name": "Pieter Cornelisz Hooftstraat",
+                    "latitude": 52.360815,
+                    "longitude": 4.882814,
+                    "container_depth": 450,
+                    "status": true,
+                    "users": [
+                        1, 2, 3, 4
+                    ],
+                    "tracking_data": [
+                        {
+                            "id": 1,
+                            "remaining_distance": 34,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 67,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 120,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
                 }
             ]
         }

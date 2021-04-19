@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Kreait\Firebase\Exception\DatabaseException;
 use Kreait\Firebase\Factory;
+use Illuminate\Support\Facades\Auth;
 
 class Helper extends Model
 {
     public $firebase;
     public $containers;
-    public $container_size_in_height = 230;
 
     /**
      * Makes the connection to your firebase database
@@ -25,11 +25,10 @@ class Helper extends Model
     {
         $db = (new Factory)->withServiceAccount(__DIR__ . '/Http/Controllers/FirebaseKey.json')
             ->withDatabaseUri('https://smartcity-75e0e-default-rtdb.firebaseio.com/');
-
         $db_initialize = $db->createDatabase();
-        $this->firebase = collect($db_initialize->getReference('cities')->getValue());
 
         $collection = collect($db_initialize->getReference('cities')->getValue());
+        $this->firebase = $collection;
 
         $containers = collect($collection
             ->firstWhere('city_id', $city_id)['containers'])
@@ -71,23 +70,20 @@ class Helper extends Model
     }
 
     /**
-     * Returns the last row from tracking data
-     */
-    public function firebase_get_last_object_from_tracking_data(): array
-    {
-        return end($this->containers);
-    }
-
-    /**
      * Counts how many percent the container is full
      */
     public function amount_of_percent_trash_bin_full(): int
     {
         // Gets the distance from the last row in the database
-        $distance = $this->firebase_get_last_object_from_tracking_data()['remaining_distance'];
+        $distance = end($this->containers)['remaining_distance'];
+
+        // Get the container depth
+        $container_depth = collect($this->firebase
+            ->firstWhere('city_id', Auth::user()->city_id)['containers'])
+            ->firstWhere('street_id', Auth::user()->street_id)['container_depth'];
 
         // Devides the original size from the container through the distance
-        $amount_of_times = $this->container_size_in_height / $distance;
+        $amount_of_times = $container_depth / $distance;
 
         // Gets the distance and rounds
         $test = floor(100 / $amount_of_times);

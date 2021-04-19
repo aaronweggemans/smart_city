@@ -62,6 +62,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="{{ asset('js/auth.js') }}"></script>
+<script src="{{ asset('js/get_street_names.js') }}"></script>
 </body>
 </html>

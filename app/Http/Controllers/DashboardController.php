@@ -49,12 +49,4 @@ class DashboardController extends Controller
             'all_registered_containers'
         ));
     }
-
-    /**
-     * @return Application|Factory|View
-     */
-    public function settings()
-    {
-        return view('dashboard.settings');
-    }
 }

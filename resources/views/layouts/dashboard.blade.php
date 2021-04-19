@@ -32,7 +32,7 @@
     <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
     <div class="text-center sidebar-header d-flex justify-content-center align-items-center px-3 py-4 mb-3">
         <div class="ms-2">
-            <img src="{{ asset('img/profiles/test.jpg') }}" class="rounded-circle mb-2"
+            <img src="{{ Auth::user()->getAvatarImage() }}" class="rounded-circle mb-2"
                  style="width: 140px;height: 125px;">
             <h5 class="fs-6 mb-0">
                 <h6 class="text-decoration-none text-white">{{ Auth::user()->name }}</h6>
@@ -40,7 +40,7 @@
             <p class="mt-1 mb-0">
                 {{ Auth::user()->getRoleName() }}
             </p>
-            <small class="mb-0 text-white">Landstrekenwijk Lelystad</small>
+            <small class="mb-0 text-white">{{ Auth::user()->getStreetName() }} {{ Auth::user()->getCityName() }}</small>
         </div>
     </div>
 
@@ -139,9 +139,12 @@
         crossorigin="anonymous"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf"></script>
-<script src="{{ asset('js/maps.js') }}"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1s66kXMm6obk6K67NcL1zvTNwgAC7KTU">
-</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1s66kXMm6obk6K67NcL1zvTNwgAC7KTU"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="{{ asset('js/maps.js') }}"></script>
+<script src="{{ asset('js/image-placeholder.js') }}"></script>
+<script src="{{ asset('js/get_street_names.js') }}"></script>
 </body>
 </html>

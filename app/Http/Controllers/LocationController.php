@@ -20,24 +20,14 @@ class LocationController extends Controller
     public $locations;
 
     /**
-     * LocationController constructor.
-     */
-    public function __construct()
-    {
-        $helper = new Helper();
-        $locations_as_array = $helper->getAllLocations();
-        $this->locations = $locations_as_array;
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return Application|Factory|Response|View
      */
     public function index()
     {
-        // Creates pagination from array
-        $locations = $this->paginate($this->locations, 10);
+        $helper = new Helper();
+        $locations = $this->paginate( $helper->getAllLocations(), 10);
         $locations->setPath('locations');
 
         return view('dashboard.locations.index', compact('locations'));

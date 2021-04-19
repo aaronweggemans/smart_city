@@ -13,7 +13,7 @@
             <div class="box p-4 mb-4 data-content">
                 <div class="row">
                     <div class="col-md-6 text-center">
-                        <img src="http://localhost:8000/img/profiles/test.jpg" class="rounded-circle mb-3"
+                        <img src="{{ $user->avatar }}" class="rounded-circle mb-3"
                              style="width: 150px;height: 125px;">
                         <h6 class="text-white">This user is assigned as a {{ $user->getRoleName() }}</h6>
                     </div>
