@@ -93,23 +93,6 @@ class Helper extends Model
     }
 
     /**
-     * Returns all the rows, (represents all the registered users)
-     * @return mixed
-     */
-    public function count_all_users(): int
-    {
-        return User::where('role_id', 2)->count();
-    }
-
-    /**
-     * @return int
-     */
-    public function count_all_administrators(): int
-    {
-        return User::where('role_id', 1)->count();
-    }
-
-    /**
      * Returns the amount of registered containers
      */
     public function getAmountOfRegisteredContainer(): int

@@ -14,6 +14,7 @@ use App\Charts\ContainerDistanceChart;
 use Carbon\Carbon;
 use Kreait\Firebase\Exception\DatabaseException;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class DashboardController extends Controller
 {
@@ -34,7 +35,7 @@ class DashboardController extends Controller
         );
 
         $today = Carbon::now()->format('d M Y');
-        $all_users = $helper->count_all_users();
+        $all_users = User::where('role_id', '1')->count();
         $all_registered_containers = $helper->getAmountOfRegisteredContainer();
 
         return view('dashboard.dashboard', compact(

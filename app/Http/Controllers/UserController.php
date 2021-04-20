@@ -23,12 +23,14 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('role_id', 'ASC')->paginate(10);
+        $amount_of_users = User::where('role_id', 2)->count();
+        $amount_of_administrators = User::where('role_id', 1)->count();
 
-        $helper = new Helper;
-        $amount_of_users = $helper->count_all_users();
-        $amount_of_administrators = $helper->count_all_administrators();
-
-        return view('dashboard.users.index', compact('users', 'amount_of_users', 'amount_of_administrators'));
+        return view('dashboard.users.index', compact(
+            'users',
+            'amount_of_users',
+            'amount_of_administrators')
+        );
     }
 
     /**
