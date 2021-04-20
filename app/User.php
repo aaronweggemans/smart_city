@@ -93,6 +93,12 @@ class User extends Authenticatable
      */
     public function getAvatarImage() : string
     {
-        return asset('storage/images/profiles/' . Auth::user()->avatar);
+        $imagePlaceholder = asset('storage/images/profiles') . '/' . Auth::user()->avatar;
+
+        if(empty(Auth::user()->avatar)) {
+            $imagePlaceholder = asset('img/user-image-placeholder.png');
+        }
+
+        return $imagePlaceholder;
     }
 }

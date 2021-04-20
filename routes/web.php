@@ -41,10 +41,18 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
         Route::get('/', 'AccountController@settings')->name('dashboard_settings');
         Route::get('/profile-image', 'AccountController@profile_picture')->name('dashboard_change_profile');
         Route::post('/update-image', 'AccountController@change_picture')->name('dashboard_update_profile_image');
+        Route::post('/update-location', 'AccountController@change_location')->name('dashboard_update_profile_location');
+        Route::post('/update-user', 'AccountController@update_user')->name('dashboard_update_user');
+        Route::delete('/delete-user', 'AccountController@delete_user')->name('dashboard_delete_user');
     });
+
+    Route::group(['prefix' => 'reports'], function() {
+        Route::get('/', 'ReportsController@index')->name('dashboard_all_reports');
+    });
+
+    Route::get('/chart/data', 'DashboardController@update_chart');
 });
 
-Route::get('/firebase', 'FirebaseController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/ajax/get/streets', 'HomeController@get_streets')->name('ajax_get_streets');

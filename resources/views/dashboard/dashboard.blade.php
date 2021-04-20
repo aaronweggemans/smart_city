@@ -43,9 +43,14 @@
 
     <div class="row mt-4">
         <div class="col-md-6">
-            <div class="box p-3 data-content">
+            <div class="box p-3 data-content mb-4">
                 <div class="" style="height: 300px">
                     {!! $chart->container() !!}
+                </div>
+            </div>
+            <div class="box p-3 data-content">
+                <div class="" style="height: 300px">
+                    <canvas id="chart_realtime_update" width="400" height="400"></canvas>
                 </div>
             </div>
         </div>
@@ -85,4 +90,7 @@
     </div>
 
     {!! $chart->script() !!}
+
+    <script src="{{ asset('js/maps.js') }}" defer></script>
+    <script src="{{ asset('js/chart_update.js') }}" defer></script>
 @endsection

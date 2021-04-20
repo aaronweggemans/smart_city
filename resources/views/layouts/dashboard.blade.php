@@ -7,14 +7,12 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>SDI | {{ ucfirst(Route::currentRouteName()) }} | Dashboard</title>
+    {{-- Returns Title and removes the spaces, and makes the first letter capital --}}
+    <title>SDI | {{ ucwords(strtolower(str_replace('_', ' ', Route::currentRouteName())), '\',. ') }} | Dashboard</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    {{--    <link href="{{ asset('css/auth.css') }}" rel="stylesheet">--}}
 
     {{-- BOOTSTAP --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -50,6 +48,7 @@
                 <i class="fas fa-chart-line fa-sm center-sidebar-item"></i> Dashboard
             </a>
         </li>
+        @if (auth::user()->role_id == 1)
         <li class="{{ Request::is('dashboard/users') ? 'active' : '' }}">
             <a href="{{ route('dashboard_all_users') }}">
                 <i class="fas fa-users fa-sm center-sidebar-item"></i> Users
@@ -60,6 +59,12 @@
                 <i class="fas fa-location-arrow fa-sm center-sidebar-item"></i> Locations
             </a>
         </li>
+        <li class="{{ Request::is('dashboard/reports') ? 'active' : '' }}">
+            <a href="{{ route('dashboard_all_reports') }}">
+                <i class="fas fa-file-pdf fa-sm center-sidebar-item"></i> Reports
+            </a>
+        </li>
+        @endif
         <li class="{{ Request::is('dashboard/settings') ? 'active' : '' }}">
             <a href="{{ route('dashboard_settings') }}">
                 <i class="fas fa-cogs fa-sm center-sidebar-item"></i> Settings
@@ -109,7 +114,7 @@
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                 document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -143,8 +148,7 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1s66kXMm6obk6K67NcL1zvTNwgAC7KTU"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-<script src="{{ asset('js/maps.js') }}"></script>
-<script src="{{ asset('js/image-placeholder.js') }}"></script>
-<script src="{{ asset('js/get_street_names.js') }}"></script>
+<script src="{{ asset('js/image-placeholder.js') }}" defer></script>
+<script src="{{ asset('js/get_street_names.js') }}" defer></script>
 </body>
 </html>

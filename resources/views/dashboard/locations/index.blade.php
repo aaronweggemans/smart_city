@@ -47,4 +47,6 @@
             </div>
         </div>
     </section>
+
+    <script src="{{ asset('js/maps.js') }}" defer></script>
 @endsection

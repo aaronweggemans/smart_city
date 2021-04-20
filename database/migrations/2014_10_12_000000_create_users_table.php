@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->foreignId('role_id');
             $table->integer('city_id');
             $table->integer('street_id');
-            $table->string('avatar');
+            $table->string('avatar')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

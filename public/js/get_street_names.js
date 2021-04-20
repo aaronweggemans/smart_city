@@ -2,6 +2,8 @@
  * Returns all the streets based on the city id
  */
 function getStreetData(selectBox) {
+    console.log('GETTING STREETS');
+
     // Value from the option
     let city_id = selectBox.value;
     let select = $("#append_streets");

@@ -23,8 +23,9 @@ class AccountController extends Controller
     {
         $helper = new Helper;
         $cities = $helper->getAllLocations();
+        $streets = $helper->getAllStreetsWhere(Auth::user()->city_id);
 
-        return view('dashboard.account.index', compact('cities'));
+        return view('dashboard.account.index', compact('cities', 'streets'));
     }
 
     /**
@@ -67,5 +68,59 @@ class AccountController extends Controller
         }
 
         return redirect('/dashboard/settings')->with('message', 'You have changed your profile image!');
+    }
+
+    /**
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function change_location(Request $request)
+    {
+        $request->validate([
+            'city' => 'required|integer',
+            'street' => 'required|integer'
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        $user->city_id = $request->city;
+        $user->street_id = $request->street;
+
+        $user->save();
+
+        return redirect('/dashboard/settings')->with('message', 'You updated your location!');
+    }
+
+    /**
+     * @param Request $request
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function update_user(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required'
+        ]);
+
+        $user = User::find(Auth::user()->id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        $user->save();
+
+        return redirect('/dashboard/settings')->with('message', 'You have changed your profile settings!');
+    }
+
+    /**
+     * @return Application|RedirectResponse|Redirector
+     */
+    public function delete_user()
+    {
+        $user = User::find(Auth::user()->id);
+
+        $user->delete();
+
+        return redirect('/');
     }
 }
