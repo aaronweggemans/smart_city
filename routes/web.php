@@ -55,4 +55,5 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/ajax/get/streets', 'HomeController@get_streets')->name('ajax_get_streets');
+Route::post('/ajax/get/streets', 'HomeController@get_streets_where')->name('ajax_get_streets');
+Route::post('/ajax/get/all_streets', 'HomeController@get_streets')->name('ajax_get_all_streets');

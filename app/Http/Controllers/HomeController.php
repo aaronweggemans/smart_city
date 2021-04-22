@@ -35,7 +35,7 @@ class HomeController extends Controller
      * @param Request $request
      * @return mixed|string
      */
-    public function get_streets(Request $request)
+    public function get_streets_where(Request $request)
     {
         if($request->ajax()){
             $helper = new Helper();
@@ -43,5 +43,14 @@ class HomeController extends Controller
         }
 
         return 'Something went wrong';
+    }
+
+    /**
+     * Returns all the streets
+     */
+    public function get_streets()
+    {
+        $helper = new Helper();
+        return $helper->getAllContainers();
     }
 }

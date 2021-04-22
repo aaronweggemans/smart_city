@@ -115,6 +115,25 @@ class Helper extends Model
     }
 
     /**
+     * Returns an array with all the values from the containers
+     * @return array
+     */
+    public function getAllContainers(): array
+    {
+        $firebase = $this->firebase;
+
+        $containers = [];
+
+        foreach($firebase as $location) {
+            foreach($location['containers'] as $container) {
+                array_push($containers, $container);
+            }
+        }
+
+        return $containers;
+    }
+
+    /**
      * Returns all the containers based on the city id
      * @param $city_id
      * @return mixed

@@ -7,32 +7,38 @@ $(document).ready(() => {
     google.charts.setOnLoadCallback(drawMap);
 
     function drawMap() {
-        var data = google.visualization.arrayToDataTable([
-            ['Lat', 'Long', 'Name'],
-            [52.494813, 5.453970, 'Container Landstrekenwijk Lelystad'],
-            [52.498118, 5.071932, 'Container Boelenspark Volendam'],
-            [52.340460, 4.864875, 'Container F. Roeskestraat Amsterdam'],
-            [52.256277, 5.221814, 'Container Stationsweg Laren'],
-            [52.811366, 4.998068, 'Container Kerkhoflaan Middenmeer'],
-            [52.949056, 4.762349, 'Container Anemonenstraat Den Helder'],
-            [52.631512, 4.750322, 'Container Waagplein Alkmaar'],
-            [50.846480, 5.689271, 'Container Verwerhoek Maastricht'],
-            [52.218156, 6.908757, 'Container Espoortlaan Enschede'],
-            [53.205749, 6.622959, 'Container Euvelgunnerweg Groningen'],
-            [51.502406, 3.601299, 'Container Essenlaan Middelburg'],
-        ]);
+        $.ajax({
+            url: "/ajax/get/all_streets",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            method: 'POST',
+            datatype: 'json',
+            success: function (street_object) {
+                let all_streets = [['Lat', 'long', 'Name']];
 
-        var options = {
-            showTooltip: true,
-            showInfoWindow: true,
-        };
+                street_object.forEach(({latitude, longitude, street_name}) => {
+                    all_streets.push([latitude, longitude, street_name]);
+                });
 
-        let chart_div = document.getElementById('chart_div')
+                var data = google.visualization.arrayToDataTable(all_streets);
 
-        if(chart_div !== null) {
-            var map = new google.visualization.Map(chart_div);
-            map.draw(data, options);
-        }
+                var options = {
+                    showTooltip: true,
+                    showInfoWindow: true,
+                };
 
+                let chart_div = document.getElementById('chart_div')
+
+                if (chart_div !== null) {
+                    var map = new google.visualization.Map(chart_div);
+                    map.draw(data, options);
+                }
+            },
+            error: function (error) {
+                console.log('There went something wrong');
+                console.log(error);
+            }
+        });
     }
 })
