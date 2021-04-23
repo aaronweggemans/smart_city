@@ -41,7 +41,7 @@ class Helper extends Model
      * Returns a array with the values in tracking data from the database
      * @return mixed
      */
-    public function firebase_distance_data(): array
+    public function firebaseDistanceData(): array
     {
         $distance_in_array = [];
 
@@ -57,7 +57,7 @@ class Helper extends Model
      * @return array
      * @throws DatabaseException
      */
-    public function firebase_distance_labels(): array
+    public function firebaseDistanceLabels(): array
     {
         $dates_in_array = [];
 
@@ -72,7 +72,7 @@ class Helper extends Model
     /**
      * Counts how many percent the container is full
      */
-    public function amount_of_percent_trash_bin_full(): int
+    public function amountOfPercentTrashBinFull(): int
     {
         // Gets the distance from the last row in the database
         $distance = end($this->containers)['remaining_distance'];
@@ -90,6 +90,17 @@ class Helper extends Model
 
         // Returns an integer
         return (intval($test));
+    }
+
+    /**
+     * Returns the container depth in a integer
+     * @return int
+     */
+    public function getContainerDepth() : int
+    {
+        return collect($this->firebase
+            ->firstWhere('city_id', Auth::user()->city_id)['containers'])
+            ->firstWhere('street_id', Auth::user()->street_id)['container_depth'];;
     }
 
     /**
@@ -141,5 +152,14 @@ class Helper extends Model
     public function getAllStreetsWhere($city_id)
     {
         return $this->firebase->firstWhere('city_id', $city_id)['containers'];
+    }
+
+    public function getAllContainersWithData()
+    {
+
+    }
+    public function getAllContainersWithLabels()
+    {
+
     }
 }

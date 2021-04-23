@@ -44,14 +44,10 @@
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="box p-3 data-content mb-4">
-                <div class="" style="height: 300px">
-                    {!! $chart->container() !!}
-                </div>
+                <canvas id="container_distance_chart"></canvas>
             </div>
-            <div class="box p-3 data-content">
-                <div class="" style="height: 300px">
-                    <canvas id="chart_realtime_update" width="400" height="400"></canvas>
-                </div>
+            <div class="box p-3 data-content mb-4">
+                <canvas id="garbage_all_chart"></canvas>
             </div>
         </div>
         <div class="col-md-6">
@@ -59,8 +55,8 @@
                 <div class="col-md-6">
                     <div class="box p-4 data-content" style="height: 100%; text-align: center;">
                         <i class="font-i fas fa-eye text-white"></i>
-
-                        <img src="http://localhost:8000/img/trash_bin.png" class="png-image" alt="Amount of stuff">
+                        <img src="http://localhost:8000/img/trash_bin.png" class="png-image mb-3" alt="Amount of stuff">
+                        <h6 class="text-white text-center">Container {{ Auth::user()->getStreetName() }} has a capacity of {{ $container_size }}cm</h6>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -82,14 +78,12 @@
             </div>
 
             <div class="row">
-                <div class="box ml-3 mr-3" style="width: 100%; height: 300px">
+                <div class="box ml-3 mr-3 mb-4" style="width: 100%; height: 300px">
                     <div id="chart_div"></div>
                 </div>
             </div>
         </div>
     </div>
-
-    {!! $chart->script() !!}
 
     <script src="{{ asset('js/maps.js') }}" defer></script>
     <script src="{{ asset('js/chart_update.js') }}" defer></script>

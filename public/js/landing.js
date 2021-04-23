@@ -20,7 +20,6 @@ $(document).ready(() => {
             $('.feature-one').css('left', distance / 64);
             $('.feature-two').css('top', distance / 32);
             $('.feature-three').css('top', (distance / 16) - 50);
-            console.log(distance);
         }
     })
 })

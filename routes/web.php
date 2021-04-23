@@ -50,10 +50,16 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
         Route::get('/', 'ReportsController@index')->name('dashboard_all_reports');
     });
 
-    Route::get('/chart/data', 'DashboardController@update_chart');
+    /**
+     * TODO: Integrate all these routes with combintation of the ajax call
+     */
+    Route::get('/chart/container_distance', 'DashboardController@container_distance_chart');
+    Route::get('/chart/all_container_distance', 'DashboardController@all_container_distance_chart');
+    Route::get('/chart/update_realtime_containers', 'DashboardController@realtime_chart');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/ajax/get/streets', 'HomeController@get_streets_where')->name('ajax_get_streets');
 Route::post('/ajax/get/all_streets', 'HomeController@get_streets')->name('ajax_get_all_streets');
+
