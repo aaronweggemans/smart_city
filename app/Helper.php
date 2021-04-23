@@ -55,7 +55,6 @@ class Helper extends Model
     /**
      * Returns all the labels for the chart in format Y-m-d
      * @return array
-     * @throws DatabaseException
      */
     public function firebaseDistanceLabels(): array
     {

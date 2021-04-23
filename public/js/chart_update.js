@@ -72,44 +72,7 @@ let amountOfAllContainerGarbageChart = new Chart(document.getElementById('garbag
             }]
         }
     }
-})
-
-// let updateGarbageChart = () => {
-//     $.ajax({
-//         url: '/dashboard/chart/container_distance',
-//         type: 'GET',
-//         dataType: 'JSON',
-//         headers: {
-//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//         },
-//         success: function(data) {
-//             amountOfContainerGarbageChart.data.labels = data.labels;
-//             amountOfContainerGarbageChart.data.datasets[0].data = data.data;
-//             amountOfContainerGarbageChart.update();
-//         },
-//         error: function(data) {
-//             console.log(data);
-//         }
-//     });
-// }
-// let updateGarbageAllChart = () => {
-//     $.ajax({
-//         url: '/dashboard/chart/all_container_distance',
-//         type: 'GET',
-//         dataType: 'JSON',
-//         headers: {
-//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//         },
-//         success: function(data) {
-//             amountOfAllContainerGarbageChart.data.labels = data.labels;
-//             amountOfAllContainerGarbageChart.data.datasets[0].data = data.data;
-//             amountOfAllContainerGarbageChart.update();
-//         },
-//         error: function(data) {
-//             console.log(data);
-//         }
-//     });
-// }
+});
 
 let updateAllCharts = () => {
     $.ajax({
@@ -140,6 +103,4 @@ let updateAllCharts = () => {
  */
 setInterval(() => {
     updateAllCharts();
-    // updateGarbageChart();
-    // updateGarbageAllChart();
 }, 1000)

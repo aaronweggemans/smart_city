@@ -7,7 +7,7 @@ function getStreetData(selectBox) {
     let select = $("#append_streets");
 
     $.ajax({
-        url: "/ajax/get/streets",
+        url: "/ajax/post/streets",
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },

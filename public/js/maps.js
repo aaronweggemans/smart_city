@@ -8,7 +8,7 @@ $(document).ready(() => {
 
     function drawMap() {
         $.ajax({
-            url: "/ajax/get/all_streets",
+            url: "/ajax/post/all_streets",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
