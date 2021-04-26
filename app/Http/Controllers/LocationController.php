@@ -27,7 +27,7 @@ class LocationController extends Controller
     public function index()
     {
         $helper = new Helper();
-        $locations = $this->paginate( $helper->getAllLocations(), 10);
+        $locations = $this->paginate($helper->getAllLocations(), 5);
         $locations->setPath('locations');
 
         return view('dashboard.locations.index', compact('locations'));
@@ -51,22 +51,28 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "city_name" => "required",
+            "street_name" => "required",
+            "latitude" => "required|numeric",
+            "longitude" => "required|numeric",
+            "container_depth" => "required"
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return Response
+     * @param int $city_id
+     * @return Application|Factory|Response|View
      */
-    public function show($name)
+    public function show(int $city_id)
     {
-        dd($name);
-        $locations = $this->locations;
+        $helper = new Helper();
+        $containers = $helper->getAllStreetsWhere($city_id);
+        $city = $helper->getCityWhere($city_id);
 
-        dd($locations);
-        return view('dashboard.locations.add', compact('locations'));
+        return view('dashboard.locations.details', compact('containers', 'city'));
     }
 
     /**

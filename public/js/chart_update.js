@@ -44,7 +44,7 @@ let amountOfAllContainerGarbageChart = new Chart(document.getElementById('garbag
             label: 'All containers',
             data: [],
             borderWidth: 1,
-            borderColor: "#DC3545",
+            backgroundColor: "#28A745",
             lineTension: 0.5,
         }]
     },

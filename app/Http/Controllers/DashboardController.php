@@ -54,7 +54,6 @@ class DashboardController extends Controller
      * Returns the data for as well as all city garbage locations, and the distance chart in a line
      *
      * @return JsonResponse
-     * @throws DatabaseException
      */
     public function realtime_chart(): JsonResponse
     {

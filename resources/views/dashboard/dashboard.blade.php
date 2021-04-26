@@ -56,7 +56,7 @@
                     <div class="box p-4 data-content" style="height: 100%; text-align: center;">
                         <i class="font-i fas fa-eye text-white"></i>
                         <img src="http://localhost:8000/img/trash_bin.png" class="png-image mb-3" alt="Amount of stuff">
-                        <h6 class="text-white text-center">Container {{ Auth::user()->getStreetName() }} has a capacity of {{ $container_size }}cm</h6>
+                        <h6 class="text-white text-center">{{ Auth::user()->getStreetName() }} has a capacity of {{ $container_size }}cm</h6>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -78,7 +78,7 @@
             </div>
 
             <div class="row">
-                <div class="box ml-3 mr-3 mb-4" style="width: 100%; height: 300px">
+                <div class="box ml-3 mr-3 mb-4" style="width: 100%; height: 400px">
                     <div id="chart_div"></div>
                 </div>
             </div>

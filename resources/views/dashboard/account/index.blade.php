@@ -78,13 +78,13 @@
                 <div class="box m-4 p-3 data-content">
                     <h4 class="fs-3">Account settings</h4>
 
-                    <form action="{{ route('dashboard_update_user') }}" method="post">
+                    <form action="{{ route('dashboard_update_user', Auth::user()->id) }}" method="post">
                         @csrf
 
                         <input type="text" name="name" class="form-control mb-3" value="{{ Auth::user()->name }}">
                         <input type="text" name="email" class="form-control mb-3" value="{{ Auth::user()->email }}">
 
-                        <button class="btn btn-primary">Update user</button>
+                        <button class="btn btn-primary" type="submit">Update user</button>
                     </form>
 
                     <form action="{{ route('dashboard_delete_user') }}" method="post">

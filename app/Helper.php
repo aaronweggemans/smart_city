@@ -12,6 +12,7 @@ class Helper extends Model
 {
     public $firebase;
     public $containers;
+    public $initialize;
 
     /**
      * Makes the connection to your firebase database
@@ -21,11 +22,12 @@ class Helper extends Model
      * @param int $street_id
      * @throws DatabaseException
      */
-    public function __construct($city_id = 1, $street_id = 1)
+    public function __construct($city_id = 0, $street_id = 0)
     {
         $db = (new Factory)->withServiceAccount(__DIR__ . '/Http/Controllers/FirebaseKey.json')
             ->withDatabaseUri('https://smartcity-75e0e-default-rtdb.firebaseio.com/');
         $db_initialize = $db->createDatabase();
+        $this->initialize = $db_initialize;
 
         $collection = collect($db_initialize->getReference('cities')->getValue());
         $this->firebase = $collection;
@@ -95,7 +97,7 @@ class Helper extends Model
      * Returns the container depth in a integer
      * @return int
      */
-    public function getContainerDepth() : int
+    public function getContainerDepth(): int
     {
         return collect($this->firebase
             ->firstWhere('city_id', Auth::user()->city_id)['containers'])
@@ -104,6 +106,7 @@ class Helper extends Model
 
     /**
      * Returns the amount of registered containers
+     * @return int
      */
     public function getAmountOfRegisteredContainer(): int
     {
@@ -134,8 +137,8 @@ class Helper extends Model
 
         $containers = [];
 
-        foreach($firebase as $location) {
-            foreach($location['containers'] as $container) {
+        foreach ($firebase as $location) {
+            foreach ($location['containers'] as $container) {
                 array_push($containers, $container);
             }
         }
@@ -148,17 +151,52 @@ class Helper extends Model
      * @param $city_id
      * @return mixed
      */
-    public function getAllStreetsWhere($city_id)
+    public function getAllStreetsWhere(int $city_id)
     {
         return $this->firebase->firstWhere('city_id', $city_id)['containers'];
     }
 
-    public function getAllContainersWithData()
+    /**
+     * Returns the city based on the city id
+     * @param $city_id
+     * @return mixed
+     */
+    public function getCityWhere(int $city_id): array
     {
-
+        return $this->firebase->firstWhere('city_id', $city_id);
     }
-    public function getAllContainersWithLabels()
-    {
 
+    /**
+     * Retrieves the container based on the city id and street id
+     * @param int $city_id
+     * @param int $street_id
+     * @return array
+     */
+    public function getContainerWhere(int $city_id, int $street_id) : array
+    {
+        return collect($this->firebase->firstWhere('city_id', $city_id)['containers'])
+            ->firstWhere('street_id', $street_id);
+    }
+
+    /**
+     * @param $request
+     */
+    public function editContainer($request)
+    {
+        $request_data = [
+            "container_depth" => $request->container_depth,
+            "latitude" => $request->latitude,
+            "longitude" => $request->longitude,
+            "status" => true,
+            "street_id" => $request->street_id,
+            "street_name" => $request->street_name,
+        ];
+
+        $this->initialize
+            ->getReference('cities')
+            ->getChild($request->city_id)
+            ->getChild('containers')
+            ->getChild($request->street_id)
+            ->update($request_data);
     }
 }

@@ -1,170 +1,31 @@
 {
-    "tracking_data": [
-        {
-            "day": "2021-04-11 21:18:10.239917",
-            "distance": 44,
-            "id": 0,
-            "time": "2021-04-11 21:18:10.239960"
-        },
-        {
-            "day": "2021-04-11 21:18:13.018995",
-            "distance": 52,
-            "id": 1,
-            "time": "2021-04-11 21:18:13.019050"
-        },
-        {
-            "day": "2021-04-11 21:18:15.193776",
-            "distance": 71,
-            "id": 2,
-            "time": "2021-04-11 21:18:15.193834"
-        },
-        {
-            "day": "2021-04-11 21:18:17.403503",
-            "distance": 99,
-            "id": 3,
-            "time": "2021-04-11 21:18:17.403566"
-        },
-        {
-            "day": "2021-04-11 21:18:19.582842",
-            "distance": 65,
-            "id": 4,
-            "time": "2021-04-11 21:18:19.582902"
-        },
-        {
-            "day": "2021-04-11 21:18:21.762300",
-            "distance": 23,
-            "id": 5,
-            "time": "2021-04-11 21:18:21.762342"
-        },
-        {
-            "day": "2021-04-11 21:18:24.191144",
-            "distance": 77,
-            "id": 6,
-            "time": "2021-04-11 21:18:24.191205"
-        },
-        {
-            "day": "2021-04-11 21:18:26.936360",
-            "distance": 37,
-            "id": 7,
-            "time": "2021-04-11 21:18:26.936421"
-        },
-        {
-            "day": "2021-04-11 21:18:29.122584",
-            "distance": 33,
-            "id": 8,
-            "time": "2021-04-11 21:18:29.122644"
-        },
-        {
-            "day": "2021-04-11 21:18:31.323089",
-            "distance": 82,
-            "id": 9,
-            "time": "2021-04-11 21:18:31.323125"
-        },
-        {
-            "day": "2021-04-11 21:18:33.527940",
-            "distance": 67,
-            "id": 10,
-            "time": "2021-04-11 21:18:33.527993"
-        }
-    ],
-    "locations": [
-        {
-            "latitude": 52.494813,
-            "longitude": 5.453970,
-            "name": "Container Landstrekenwijk Lelystad",
-            "tresh_bin_depth": 120
-        },
-        {
-            "latitude": 52.498118,
-            "longitude": 5.071932,
-            "name": "Container Boelenspark Volendam",
-            "tresh_bin_depth": 220
-        },
-        {
-            "latitude": 52.340460,
-            "longitude": 4.864875,
-            "name": "Container F. Roeskestraat Amsterdam",
-            "tresh_bin_depth": 230
-        },
-        {
-            "latitude": 52.256277,
-            "longitude": 5.221814,
-            "name": "Container Stationsweg Laren",
-            "tresh_bin_depth": 390
-        },
-        {
-            "latitude": 52.811366,
-            "longitude": 4.998068,
-            "name": "Container Kerkhoflaan Middenmeer",
-            "tresh_bin_depth": 270
-        },
-        {
-            "latitude": 52.949056,
-            "longitude": 4.762349,
-            "name": "Container Anemonenstraat Den Helder",
-            "tresh_bin_depth": 120
-        },
-        {
-            "latitude": 52.631512,
-            "longitude": 4.750322,
-            "name": "Container Waagplein Alkmaar",
-            "tresh_bin_depth": 350
-        },
-        {
-            "latitude": 50.846480,
-            "longitude": 5.689271,
-            "name": "Container Verwerhoek Maastricht",
-            "tresh_bin_depth": 270
-        },
-        {
-            "latitude": 52.218156,
-            "longitude": 6.908757,
-            "name": "Container Espoortlaan Enschede",
-            "tresh_bin_depth": 230
-        },
-        {
-            "latitude": 53.205749,
-            "longitude": 6.622959,
-            "name": "Container Euvelgunnerweg Groningen",
-            "tresh_bin_depth": 170
-        },
-        {
-            "latitude": 51.502406,
-            "longitude": 3.601299,
-            "name": "Container Essenlaan Middelburg",
-            "tresh_bin_depth": 160
-        }
-    ],
     "cities": [
         {
-            "city_id": 1,
+            "city_id": 0,
             "city_name": "Lelystad",
             "containers": [
                 {
-                    "street_id": 1,
+                    "street_id": 0,
                     "street_name": "Landstrekenwijk",
                     "latitude": 52.494813,
                     "longitude": 5.453970,
                     "container_depth": 300,
                     "status": true,
-                    "users": [
-                        1, 2, 3, 4
-                    ],
                     "tracking_data": [
                         {
-                            "id": 1,
+                            "id": 0,
                             "remaining_distance": 10,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
-                            "id": 2,
+                            "id": 1,
                             "remaining_distance": 12,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "remaining_distance": 15,
                             "day": "2021-04-15",
                             "time": "23:59:53"
@@ -172,30 +33,27 @@
                     ]
                 },
                 {
-                    "street_id": 2,
+                    "street_id": 1,
                     "street_name": "Schoener",
                     "latitude": 52.499966,
                     "longitude": 5.455585,
                     "container_depth": 230,
                     "status": true,
-                    "users": [
-                        1, 2, 3, 4
-                    ],
                     "tracking_data": [
                         {
-                            "id": 1,
+                            "id": 0,
                             "remaining_distance": 25,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
-                            "id": 2,
+                            "id": 1,
                             "remaining_distance": 34,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "remaining_distance": 67,
                             "day": "2021-04-15",
                             "time": "23:59:53"
@@ -203,36 +61,33 @@
                     ]
                 },
                 {
-                    "street_id": 3,
+                    "street_id": 2,
                     "street_name": "Hollandse Hout",
                     "latitude": 52.486876,
                     "longitude": 5.429104,
                     "container_depth": 410,
                     "status": true,
-                    "users": [
-                        1, 2, 3, 4
-                    ],
                     "tracking_data": [
                         {
-                            "id": 1,
+                            "id": 0,
                             "remaining_distance": 24,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
-                            "id": 2,
+                            "id": 1,
                             "remaining_distance": 67,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "remaining_distance": 89,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         },
                         {
-                            "id": 4,
+                            "id": 3,
                             "remaining_distance": 140,
                             "day": "2021-04-15",
                             "time": "23:59:59"
@@ -240,24 +95,21 @@
                     ]
                 },
                 {
-                    "street_id": 4,
+                    "street_id": 3,
                     "street_name": "Slotenlaan",
                     "latitude": 52.493332,
                     "longitude": 5.484939,
                     "container_depth": 120,
                     "status": true,
-                    "users": [
-                        1, 2, 3, 4
-                    ],
                     "tracking_data": [
                         {
-                            "id": 1,
+                            "id": 0,
                             "remaining_distance": 90,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
-                            "id": 2,
+                            "id": 1,
                             "remaining_distance": 110,
                             "day": "2021-04-15",
                             "time": "23:59:53"
@@ -267,65 +119,31 @@
             ]
         },
         {
-            "city_id": 2,
+            "city_id": 1,
             "city_name": "Volendam",
             "containers": [
                 {
-                    "street_id": 1,
-                    "street_name": "Boelenspark",
-                    "latitude": 52.32325,
-                    "longitude": 4.34364,
-                    "container_depth": 300,
-                    "status": true,
-                    "users": [
-                        1, 2, 3, 4
-                    ],
-                    "tracking_data": [
-                        {
-                            "id": 1,
-                            "remaining_distance": 10,
-                            "day": "2021-04-15",
-                            "time": "22:52:46"
-                        },
-                        {
-                            "id": 2,
-                            "remaining_distance": 12,
-                            "day": "2021-04-15",
-                            "time": "23:52:23"
-                        },
-                        {
-                            "id": 3,
-                            "remaining_distance": 15,
-                            "day": "2021-04-15",
-                            "time": "23:59:53"
-                        }
-                    ]
-                },
-                {
-                    "street_id": 1,
+                    "street_id": 0,
                     "street_name": "Leendert Spaanderlaan",
                     "latitude": 52.496183,
                     "longitude": 5.058969,
                     "container_depth": 120,
                     "status": true,
-                    "users": [
-                        1, 2, 3, 4
-                    ],
                     "tracking_data": [
                         {
-                            "id": 1,
+                            "id": 0,
                             "remaining_distance": 56,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
-                            "id": 2,
+                            "id": 1,
                             "remaining_distance": 78,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "remaining_distance": 196,
                             "day": "2021-04-15",
                             "time": "23:59:53"
@@ -335,34 +153,31 @@
             ]
         },
         {
-            "city_id": 3,
+            "city_id": 2,
             "city_name": "Amsterdam",
             "containers": [
                 {
-                    "street_id": 1,
+                    "street_id": 0,
                     "street_name": "F. Roeskestraat Amsterdam",
                     "latitude": 52.340460,
                     "longitude": 4.864875,
                     "container_depth": 230,
                     "status": true,
-                    "users": [
-                        1, 2, 3, 4
-                    ],
                     "tracking_data": [
                         {
-                            "id": 1,
+                            "id": 0,
                             "remaining_distance": 23,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
-                            "id": 2,
+                            "id": 1,
                             "remaining_distance": 43,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "remaining_distance": 67,
                             "day": "2021-04-15",
                             "time": "23:59:53"
@@ -370,31 +185,452 @@
                     ]
                 },
                 {
-                    "street_id": 2,
+                    "street_id": 1,
                     "street_name": "Pieter Cornelisz Hooftstraat",
                     "latitude": 52.360815,
                     "longitude": 4.882814,
                     "container_depth": 450,
                     "status": true,
-                    "users": [
-                        1, 2, 3, 4
-                    ],
                     "tracking_data": [
                         {
-                            "id": 1,
+                            "id": 0,
                             "remaining_distance": 34,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
-                            "id": 2,
+                            "id": 1,
                             "remaining_distance": 67,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "remaining_distance": 120,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city_id": 3,
+            "city_name": "Maastricht",
+            "containers": [
+                {
+                    "street_id": 0,
+                    "street_name": "Cortenstraat",
+                    "latitude": 50.846858,
+                    "longitude": 5.691888,
+                    "container_depth": 720,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 236,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 589,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 673,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 1,
+                    "street_name": "Malbergsingle",
+                    "latitude": 50.862645,
+                    "longitude": 5.656627,
+                    "container_depth": 420,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 105,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 250,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 405,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 2,
+                    "street_name": "Langendaal",
+                    "latitude": 50.822677,
+                    "longitude": 5.728045,
+                    "container_depth": 230,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 105,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 150,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 185,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city_id": 4,
+            "city_name": "Eindhoven",
+            "containers": [
+                {
+                    "street_id": 0,
+                    "street_name": "Ruysdaelbaan",
+                    "latitude": 51.437498,
+                    "longitude": 5.498372,
+                    "container_depth": 940,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 150,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 340,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 450,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 506,
+                            "day": "2021-04-16",
+                            "time": "00:59:20"
+                        },
+                        {
+                            "id": 4,
+                            "remaining_distance": 590,
+                            "day": "2021-04-16",
+                            "time": "01:02:40"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 1,
+                    "street_name": "Liesbergstraat",
+                    "latitude": 51.482143,
+                    "longitude": 5.467762,
+                    "container_depth": 405,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 123,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 236,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 240,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        },
+                        {
+                            "id": 3,
+                            "remaining_distance": 353,
+                            "day": "2021-04-16",
+                            "time": "00:59:20"
+                        },
+                        {
+                            "id": 4,
+                            "remaining_distance": 402,
+                            "day": "2021-04-16",
+                            "time": "01:02:40"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city_id": 5,
+            "city_name": "Groningen",
+            "containers": [
+                {
+                    "street_id": 0,
+                    "street_name": "Timorstraat",
+                    "latitude": 53.232772,
+                    "longitude": 6.566352,
+                    "container_depth": 350,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 123,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 154,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 263,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 1,
+                    "street_name": "H.W. Mesdagplein",
+                    "latitude": 53.216163,
+                    "longitude": 6.550912,
+                    "container_depth": 250,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 145,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 122,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 233,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city_id": 6,
+            "city_name": "Middleburg",
+            "containers": [
+                {
+                    "street_id": 0,
+                    "street_name": "Schuttershofstraat",
+                    "latitude": 51.498594,
+                    "longitude": 3.608184,
+                    "container_depth": 345,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 223,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 256,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 326,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 1,
+                    "street_name": "Howlin Wolfstraat",
+                    "latitude": 51.483561,
+                    "longitude": 3.638747,
+                    "container_depth": 250,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 145,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 122,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 233,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city_id": 7,
+            "city_name": "West Terschelling",
+            "containers": [
+                {
+                    "street_id": 0,
+                    "street_name": "Parnassiaweg",
+                    "latitude": 53.361757,
+                    "longitude": 5.213698,
+                    "container_depth": 345,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 223,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 256,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 326,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 1,
+                    "street_name": "West Aletalaan",
+                    "latitude": 53.368215,
+                    "longitude": 5.219225,
+                    "container_depth": 567,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 123,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 456,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 543,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "city_id": 8,
+            "city_name": "Enschede",
+            "containers": [
+                {
+                    "street_id": 0,
+                    "street_name": "Heutinkstraat",
+                    "latitude": 52.211743,
+                    "longitude": 6.914058,
+                    "container_depth": 350,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 12,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 34,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 344,
+                            "day": "2021-04-15",
+                            "time": "23:59:53"
+                        }
+                    ]
+                },
+                {
+                    "street_id": 1,
+                    "street_name": "Taurusstraat",
+                    "latitude": 52.229981,
+                    "longitude": 6.852894,
+                    "container_depth": 567,
+                    "status": true,
+                    "tracking_data": [
+                        {
+                            "id": 0,
+                            "remaining_distance": 122,
+                            "day": "2021-04-15",
+                            "time": "22:52:46"
+                        },
+                        {
+                            "id": 1,
+                            "remaining_distance": 233,
+                            "day": "2021-04-15",
+                            "time": "23:52:23"
+                        },
+                        {
+                            "id": 2,
+                            "remaining_distance": 457,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }

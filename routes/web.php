@@ -18,26 +18,11 @@ Route::get('/', 'HomeController@landing')->name('landing_page');
 
 Auth::routes();
 
-Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
+Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
-    // User Resource
-    Route::group(['prefix' => 'users'], function() {
-        Route::get('/', 'UserController@index')->name('dashboard_all_users');
-        Route::get('/{id}', 'UserController@show')->name('dashboard_show_user');
-        Route::post('/{id}', 'UserController@update')->name('dashboard_update_user');
-        Route::delete('/{id}', 'UserController@destroy')->name('dashboard_remove_user');
-    });
-
-    // Location Resource
-    Route::group(['prefix' => 'locations'], function() {
-        Route::get('/', 'LocationController@index')->name('dashboard_all_locations');
-        Route::get('/add', 'LocationController@create')->name('dashboard_add_location');
-        Route::get('/{name}', 'LocationController@show')->name('dashboard_location_details');
-    });
-
     // Settings/Account Resource
-    Route::group(['prefix' => 'settings'], function() {
+    Route::group(['prefix' => 'settings'], function () {
         Route::get('/', 'AccountController@settings')->name('dashboard_settings');
         Route::get('/profile-image', 'AccountController@profile_picture')->name('dashboard_change_profile');
         Route::post('/update-image', 'AccountController@change_picture')->name('dashboard_update_profile_image');
@@ -46,15 +31,42 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function() {
         Route::delete('/delete-user', 'AccountController@delete_user')->name('dashboard_delete_user');
     });
 
-    Route::group(['prefix' => 'reports'], function() {
-        Route::get('/', 'ReportsController@index')->name('dashboard_all_reports');
-    });
-
     Route::get('/chart/update_realtime_containers', 'DashboardController@realtime_chart');
+
+    /**
+     * USER NEEDS TO BE ADMINISTRATOR (role_id == 1)
+     */
+    Route::group(['middleware' => 'isAdmin'], function () {
+        // User Resource
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', 'UserController@index')->name('dashboard_all_users');
+            Route::get('/{id}', 'UserController@show')->name('dashboard_show_user');
+            Route::post('/{id}', 'UserController@update')->name('dashboard_update_user');
+            Route::delete('/{id}', 'UserController@destroy')->name('dashboard_remove_user');
+        });
+
+        // Reports Resource
+        Route::group(['prefix' => 'reports'], function () {
+            Route::get('/', 'ReportsController@index')->name('dashboard_all_reports');
+        });
+
+        // Location Resource
+        Route::group(['prefix' => 'locations'], function () {
+            Route::get('/', 'LocationController@index')->name('dashboard_all_locations');
+            Route::get('/add', 'LocationController@create')->name('dashboard_add_location');
+            Route::get('/{city_id}', 'LocationController@show')->name('dashboard_location_details');
+            Route::post('/store', 'LocationController@store')->name('dashboard_create_location');
+
+            Route::get('/{city_id}/container/{street_id}', 'ContainerController@show')
+                ->name('dashboard_show_container');
+            Route::post('/{city_id}/container/{street_id}', 'ContainerController@update')
+                ->name('dashboard_update_container');
+            Route::delete('/{city_id}/container/{street_id}', 'ContainerController@destroy')
+                ->name('dashboard_delete_container');
+        });
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::post('/ajax/post/streets', 'HomeController@get_streets_where')->name('ajax_get_streets');
 Route::post('/ajax/post/all_streets', 'HomeController@get_streets')->name('ajax_get_all_streets');
-

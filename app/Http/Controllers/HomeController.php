@@ -48,7 +48,7 @@ class HomeController extends Controller
     /**
      * Returns all the streets
      */
-    public function get_streets()
+    public function get_streets(): array
     {
         $helper = new Helper();
         return $helper->getAllContainers();

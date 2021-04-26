@@ -73,7 +73,7 @@ class User extends Authenticatable
     public function getCityName(): string
     {
         return $this->make_firebase_connection()
-            ->firstWhere('city_id', Auth::user()->city_id)['city_name'];
+            ->firstWhere('city_id', $this->city_id)['city_name'];
     }
 
     /**
@@ -83,8 +83,8 @@ class User extends Authenticatable
     public function getStreetName() : string
     {
         return collect($this->make_firebase_connection()
-            ->firstWhere('city_id', Auth::user()->city_id)['containers'])
-            ->firstWhere('street_id', Auth::user()->street_id)['street_name'];
+            ->firstWhere('city_id', $this->city_id)['containers'])
+            ->firstWhere('street_id', $this->street_id)['street_name'];
     }
 
     /**
@@ -93,9 +93,9 @@ class User extends Authenticatable
      */
     public function getAvatarImage() : string
     {
-        $imagePlaceholder = asset('storage/images/profiles') . '/' . Auth::user()->avatar;
+        $imagePlaceholder = asset('storage/images/profiles') . '/' . $this->avatar;
 
-        if(empty(Auth::user()->avatar)) {
+        if(empty($this->avatar)) {
             $imagePlaceholder = asset('img/user-image-placeholder.png');
         }
 
