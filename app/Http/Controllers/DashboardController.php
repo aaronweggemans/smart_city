@@ -54,10 +54,11 @@ class DashboardController extends Controller
      * Returns the data for as well as all city garbage locations, and the distance chart in a line
      *
      * @return JsonResponse
+     * @throws DatabaseException
      */
     public function realtime_chart(): JsonResponse
     {
-        $helper = new Helper();
+        $helper = new Helper(Auth::user()->city_id, Auth::user()->street_id);
 
         $container_distance_chart_for_all_cities_labels = [];
         $container_distance_chart_for_all_cities_data = [];
@@ -66,6 +67,9 @@ class DashboardController extends Controller
         $container_distance_chart_data = $helper->firebaseDistanceData();
 
         $all_streets = $helper->getAllStreetsWhere(Auth::user()->city_id);
+
+        // Percentage updates in dashboard
+        $percentage = $helper->amountOfPercentTrashBinFull();
 
         foreach ($all_streets as $label) {
             array_push($container_distance_chart_for_all_cities_labels, $label['street_name']);
@@ -76,7 +80,8 @@ class DashboardController extends Controller
             'container_distance_chart_for_all_cities_labels',
             'container_distance_chart_for_all_cities_data',
             'container_distance_chart_labels',
-            'container_distance_chart_data'
+            'container_distance_chart_data',
+            'percentage'
         ));
     }
 }

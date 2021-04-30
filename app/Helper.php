@@ -179,7 +179,9 @@ class Helper extends Model
     }
 
     /**
+     * Edits a container
      * @param $request
+     * @throws DatabaseException
      */
     public function editContainer($request)
     {
@@ -198,5 +200,44 @@ class Helper extends Model
             ->getChild('containers')
             ->getChild($request->street_id)
             ->update($request_data);
+    }
+
+    /**
+     * Removes a container from firebase
+     * @param $city_id
+     * @param $street_id
+     * @throws DatabaseException
+     */
+    public function removeContainer($city_id, $street_id)
+    {
+        $this->initialize
+            ->getReference('cities')
+            ->getChild($city_id)
+            ->getChild('containers')
+            ->getChild($street_id)
+            ->remove();
+    }
+
+    /**
+     * @param $request
+     * @throws DatabaseException
+     */
+    public function addContainer($request)
+    {
+        $request_data = [
+            "container_depth" => $request->container_depth,
+            "latitude" => $request->latitude,
+            "longitude" => $request->longitude,
+            "status" => true,
+            "street_id" => $request->street_id,
+            "street_name" => $request->street_name,
+        ];
+
+        $this->initialize
+            ->getReference('cities')
+            ->getChild($request->city_id)
+            ->getChild('containers')
+            ->getChild($request->street_id)
+            ->push($request_data);
     }
 }

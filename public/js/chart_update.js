@@ -74,6 +74,10 @@ let amountOfAllContainerGarbageChart = new Chart(document.getElementById('garbag
     }
 });
 
+/**
+ * Updates all the charts based on javascript updates
+ * This is done realtime by ajax
+ */
 let updateAllCharts = () => {
     $.ajax({
         url: '/dashboard/chart/update_realtime_containers',
@@ -88,6 +92,9 @@ let updateAllCharts = () => {
 
             amountOfAllContainerGarbageChart.data.labels = data.container_distance_chart_for_all_cities_labels;
             amountOfAllContainerGarbageChart.data.datasets[0].data = data.container_distance_chart_for_all_cities_data;
+
+            $("#doughnut-percentage-text").text(data.percentage + "%");
+            $("#stroke-dasharray").attr("stroke-dasharray", data.percentage);
 
             amountOfAllContainerGarbageChart.update();
             amountOfContainerGarbageChart.update();

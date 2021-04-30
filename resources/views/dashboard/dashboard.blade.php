@@ -68,10 +68,10 @@
                              xmlns="http://www.w3.org/2000/svg">
                             <circle class="circle-chart__background" stroke="#efefef" stroke-width="2"
                                     fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431"/>
-                            <circle class="circle-chart__circle" stroke="#DC3545" stroke-width="2"
+                            <circle class="circle-chart__circle" id="stroke-dasharray" stroke="#DC3545" stroke-width="2"
                                     stroke-dasharray="{{ $percentage }},100" stroke-linecap="round" fill="none"
                                     cx="16.91549431" cy="16.91549431" r="15.91549431"/>
-                            <h1 class="text-white center-doughnut">{{ $percentage }}%</h1>
+                            <h1 class="text-white center-doughnut" id="doughnut-percentage-text">{{ $percentage }}%</h1>
                         </svg>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Kreait\Firebase\Exception\DatabaseException;
 
 class ContainerController extends Controller
 {
@@ -37,11 +38,24 @@ class ContainerController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Response
+     * @return RedirectResponse
+     * @throws DatabaseException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $request->validate([
+            "city_id" => "required",
+            "street_id" => "required",
+            "street_name" => "required",
+            "container_depth" => "required",
+            "latitude" => "required",
+            "longitude" => "required",
+        ]);
+
+        $helper = new Helper();
+        $helper->addContainer($request);
+
+        return Redirect::back()->with('message', 'Container is created!');
     }
 
     /**
@@ -75,10 +89,10 @@ class ContainerController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param int $id
      * @return RedirectResponse
+     * @throws DatabaseException
      */
-    public function update(Request $request)
+    public function update(Request $request): RedirectResponse
     {
         $request->validate([
             "city_id" => "required",
@@ -98,11 +112,16 @@ class ContainerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return Response
+     * @param $city_id
+     * @param $street_id
+     * @return RedirectResponse
+     * @throws DatabaseException
      */
-    public function destroy($id)
+    public function destroy($city_id, $street_id): RedirectResponse
     {
-        dd('dikke jonko');
+        $helper = new Helper;
+        $helper->removeContainer($city_id, $street_id);
+
+        return redirect('/dashboard/locations/')->with('message', 'Container is removed!');
     }
 }

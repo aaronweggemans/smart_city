@@ -41,9 +41,13 @@
                                    href="{{ route('dashboard_location_details', $location['city_id']) }}">{{ $location['city_name'] }}</a>
                             </div>
                             <div class="col-md-4">
-                                @foreach($location['containers'] as $container)
-                                    <p>{{ $container['street_name'] }}</p>
-                                @endforeach
+                                @if(isset($location['containers']))
+                                    @foreach($location['containers'] as $container)
+                                        <p>{{ $container['street_name'] }}</p>
+                                    @endforeach
+                                @else
+                                    <p class="text-danger">No locations defined!</p>
+                                @endif
                             </div>
                         </div>
                     @endforeach
