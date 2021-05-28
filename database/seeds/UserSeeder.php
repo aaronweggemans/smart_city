@@ -22,9 +22,9 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Aaron Weggemans',
                 'role_id' => 1,
-                'city_id' => 1, // Jullie wonen allemaal in Lelystad
-                'street_id' => 1,
-                'avatar' => 'https://i.pravatar.cc/150?img=' . rand(1, 60),
+                'city_id' => 0, // Jullie wonen allemaal in Lelystad
+                'street_id' => 0,
+                'avatar' => '',
                 'email_verified_at' => now(),
                 'email' => 'aaronweggemans@hotmail.nl',
                 'password' => $password,
@@ -33,9 +33,9 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Alex Yip',
                 'role_id' => 1,
-                'city_id' => 1, // Jullie wonen allemaal in Lelystad
-                'street_id' => 1,
-                'avatar' => 'https://i.pravatar.cc/150?img=' . rand(1, 60),
+                'city_id' => 0, // Jullie wonen allemaal in Lelystad
+                'street_id' => 0,
+                'avatar' => '',
                 'email_verified_at' => now(),
                 'email' => 'alexyip@hotmail.nl',
                 'password' => $password,
@@ -44,9 +44,9 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Christian Tol',
                 'role_id' => 1,
-                'city_id' => 1, // Jullie wonen allemaal in Lelystad
-                'street_id' => 1,
-                'avatar' => 'https://i.pravatar.cc/150?img=' . rand(1, 60),
+                'city_id' => 0, // Jullie wonen allemaal in Lelystad
+                'street_id' => 0,
+                'avatar' => '',
                 'email_verified_at' => now(),
                 'email' => 'christiantol@hotmail.nl',
                 'password' => $password,
@@ -55,9 +55,9 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Jovanni Tjon-A-Sam',
                 'role_id' => 1,
-                'city_id' => 1, // Jullie wonen allemaal in Lelystad
-                'street_id' => 1,
-                'avatar' => 'https://i.pravatar.cc/150?img=' . rand(1, 60),
+                'city_id' => 0, // Jullie wonen allemaal in Lelystad
+                'street_id' => 0,
+                'avatar' => '',
                 'email_verified_at' => now(),
                 'email' => 'jovannitjonasam@hotmail.nl',
                 'password' => $password,
