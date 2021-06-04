@@ -301,19 +301,19 @@ class Helper extends Model
             dd($exception);
         }
 
-        if(empty($list_of_sub_locations)) {
-            $no_data = ["Alle prullebakken zijn vol!", 0, $lat, $long];
-            array_push($list_of_sub_locations, $no_data);
+        if(!empty($list_of_sub_locations)) {
+            $distances = array_map(function($item) use($ref) {
+                $a = array_slice($item, -2);
+                return $this->calculateDistance($a, $ref);
+            }, $list_of_sub_locations);
+
+            asort($distances);
+
+            return $list_of_sub_locations[key($distances)];
         }
-
-        $distances = array_map(function($item) use($ref) {
-            $a = array_slice($item, -2);
-            return $this->calculateDistance($a, $ref);
-        }, $list_of_sub_locations);
-
-        asort($distances);
-
-        return $list_of_sub_locations[key($distances)];
+        else {
+            return ["error"];
+        }
     }
 
     /**

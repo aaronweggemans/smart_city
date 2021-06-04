@@ -35,9 +35,13 @@ class DashboardController extends Controller
             $helper->firebaseDistanceData()
         );
 
+        $latlong = $helper->getContainerWhere(Auth::user()->city_id, Auth::user()->street_id);
+        $latitude = $latlong['latitude'];
+        $longitude = $latlong['longitude'];
+
         $container_recommendation = ["Location", 10, "lat", "long"];
         if($percentage >= 70) {
-            $container_recommendation = $helper->returnTheClosestArrayValue(50.849136, 5.728178);
+            $container_recommendation = $helper->returnTheClosestArrayValue($latitude, $longitude);
         }
 
         $today = Carbon::now()->format('d M Y');

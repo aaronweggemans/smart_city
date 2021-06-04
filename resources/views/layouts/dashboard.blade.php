@@ -150,5 +150,6 @@
 
 <script src="{{ asset('js/image-placeholder.js') }}" defer></script>
 <script src="{{ asset('js/get_street_names.js') }}" defer></script>
+<script src="{{ asset('js/remove-message.js') }}" defer></script>
 </body>
 </html>

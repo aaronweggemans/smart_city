@@ -3,11 +3,22 @@
 @section('content')
 
     @if($percentage >= 70)
-        <div class="card mb-4">
-            <div class="card-body bg-warning text-white">
-                <h4>Container zit al redelijk vol, ga naar {{ $container_recommendation[0] . ' ' . Auth::user()->getCityName()}}</h4>
+        @if($container_recommendation[0] == 'error')
+            <div class="card mb-4" id="disappearing-message">
+                <div class="card-body bg-danger text-white">
+                    <h6>Alle vuilnisbakken in uw stad zitten vol!</h6>
+                </div>
             </div>
-        </div>
+        @else
+            <div class="card mb-4" id="disappearing-message">
+                <div class="card-body bg-warning text-white">
+                    <h6>Container zit al redelijk vol, de dichtstbijzijnde container is:
+                        <u>{{ $container_recommendation[0] . ' ' . Auth::user()->getCityName()}}</u>
+                    </h6>
+                    <a class="text-white" href="{{ route('dashboard_settings') }}">Verander locatie hier</a>
+                </div>
+            </div>
+        @endif
     @endif
 
     <div class="welcome">
