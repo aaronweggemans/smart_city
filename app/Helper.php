@@ -13,6 +13,8 @@ class Helper extends Model
     public $firebase;
     public $containers;
     public $initialize;
+    public $city_id;
+    public $street_id;
 
     /**
      * Makes the connection to your firebase database
@@ -24,6 +26,9 @@ class Helper extends Model
      */
     public function __construct($city_id = 0, $street_id = 0)
     {
+        $this->city_id = $city_id;
+        $this->street_id = $street_id;
+
         $db = (new Factory)->withServiceAccount(__DIR__ . '/Http/Controllers/FirebaseKey.json')
             ->withDatabaseUri('https://smartcity-75e0e-default-rtdb.firebaseio.com/');
         $db_initialize = $db->createDatabase();
@@ -239,5 +244,93 @@ class Helper extends Model
             ->getChild('containers')
             ->getChild($request->street_id)
             ->push($request_data);
+    }
+
+    /**
+     * Returns the amount value based on parameters
+     * @param $remaining_distance
+     * @param $container_depth
+     * @return int
+     */
+    public function percentage_of_bin($remaining_distance, $container_depth): int
+    {
+        // Devides the original size from the container through the distance
+        $amount_of_times = $container_depth / $remaining_distance;
+
+        // Gets the distance and rounds
+        $test = floor(100 / $amount_of_times);
+
+        // Returns an integer
+        return (intval($test));
+    }
+
+    /**
+     * Returns the closest array from the list items
+     * @param $lat
+     * @param $long
+     * @return array
+     */
+    public function returnTheClosestArrayValue($lat, $long): array
+    {
+        $ref = [$lat, $long];
+        $list_of_sub_locations = [];
+        $items_list = $this->firebase->firstWhere('city_id', $this->city_id)['containers'];
+
+        try{
+            // Removes its own street
+            unset($items_list[Auth::user()->street_id]);
+            foreach($items_list as $converter)
+            {
+                $temp_container_depth = $converter['container_depth'];
+                $remaining_distance = end($converter['tracking_data'])['remaining_distance'];
+
+                $percentage = $this->percentage_of_bin($remaining_distance, $temp_container_depth);
+
+                if($percentage < 70){
+                    $update = [
+                        $converter['street_name'],
+                        $converter['container_depth'],
+                        $converter['latitude'],
+                        $converter['longitude']
+                    ];
+                    array_push($list_of_sub_locations, $update);
+                }
+            }
+        }
+        catch(\Exception $exception) {
+            dd($exception);
+        }
+
+        if(empty($list_of_sub_locations)) {
+            $no_data = ["Alle prullebakken zijn vol!", 0, $lat, $long];
+            array_push($list_of_sub_locations, $no_data);
+        }
+
+        $distances = array_map(function($item) use($ref) {
+            $a = array_slice($item, -2);
+            return $this->calculateDistance($a, $ref);
+        }, $list_of_sub_locations);
+
+        asort($distances);
+
+        return $list_of_sub_locations[key($distances)];
+    }
+
+    /**
+     * Calculates the most close by distance
+     * @param $a
+     * @param $b
+     * @return float
+     */
+    public function calculateDistance($a, $b): float
+    {
+        list($lat1, $lon1) = $a;
+        list($lat2, $lon2) = $b;
+
+        $theta = $lon1 - $lon2;
+        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        return $dist * 60 * 1.1515;
     }
 }

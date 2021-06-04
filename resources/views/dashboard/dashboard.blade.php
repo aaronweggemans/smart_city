@@ -1,6 +1,15 @@
 @extends('layouts.dashboard')
 
 @section('content')
+
+    @if($percentage >= 70)
+        <div class="card mb-4">
+            <div class="card-body bg-warning text-white">
+                <h4>Container zit al redelijk vol, ga naar {{ $container_recommendation[0] . ' ' . Auth::user()->getCityName()}}</h4>
+            </div>
+        </div>
+    @endif
+
     <div class="welcome">
         <div class="content rounded-3 p-3">
             <h4 class="fs-3">Welcome to SDI</h4>

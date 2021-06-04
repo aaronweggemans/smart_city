@@ -35,6 +35,11 @@ class DashboardController extends Controller
             $helper->firebaseDistanceData()
         );
 
+        $container_recommendation = ["Location", 10, "lat", "long"];
+        if($percentage >= 70) {
+            $container_recommendation = $helper->returnTheClosestArrayValue(50.849136, 5.728178);
+        }
+
         $today = Carbon::now()->format('d M Y');
         $all_users = User::where('role_id', '1')->count();
         $all_registered_containers = $helper->getAmountOfRegisteredContainer();
@@ -46,7 +51,8 @@ class DashboardController extends Controller
             'today',
             'all_users',
             'all_registered_containers',
-            'container_size'
+            'container_size',
+            'container_recommendation'
         ));
     }
 

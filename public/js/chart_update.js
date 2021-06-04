@@ -41,7 +41,7 @@ let amountOfAllContainerGarbageChart = new Chart(document.getElementById('garbag
     data: {
         labels: [],
         datasets: [{
-            label: 'All containers',
+            label: 'Amount of thrash',
             data: [],
             borderWidth: 1,
             backgroundColor: "#28A745",
