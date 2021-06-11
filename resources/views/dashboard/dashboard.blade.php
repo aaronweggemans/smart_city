@@ -13,11 +13,10 @@
             <div class="card mb-4" id="disappearing-message">
                 <div class="card-body bg-warning text-white">
                     <h6>Uw container zit bijna vol, neem de afval naar uw dichtstbijzijnde container die beschikbaar is. Deze is te vinden op:
-                        <u>{{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}}</u>
+                        <a href="{{ $link }}" target="_blank"><u>{{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}}</u></a>
                     </h6>
                     <br>
-                    <h6>De container van 
-                        <u>{{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}}</u> zit momenteel op {{ $recommended_percentage }}% ({{ $recommended_remaining }}L / {{ $container_recommendation[2] }}L).  
+                    <h6>De container van {{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}} zit momenteel op {{ $recommended_percentage }}% ({{ $recommended_remaining }}L / {{ $container_recommendation[2] }}L).  
                     </h6>
                 </div>
             </div>

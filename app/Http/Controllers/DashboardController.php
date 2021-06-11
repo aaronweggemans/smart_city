@@ -43,13 +43,16 @@ class DashboardController extends Controller
         $container_recommendation = '';
         $recommended_remaining = '';
         $recommended_percentage = '';
+        $link = '';
 
-        if($percentage >= 80) {
+        if($percentage >= 85) {
             $container_recommendation = $helper->returnTheClosestArrayValue($latitude, $longitude);
             $recommended_data_helper =  new Helper(Auth::user()->city_id, $container_recommendation[0]);
+
             $recommended_remaining = $recommended_data_helper->containers[count($recommended_data_helper->containers) - 1]['current_depth'];
 
-            // dd($container_recommendation);
+            $link = "https://www.google.nl/maps/dir/$latitude,$longitude/$container_recommendation[3],$container_recommendation[4]";  
+
             if($container_recommendation[0] != 'error') {
                 $amount_of_times = $container_recommendation[2] / $recommended_remaining;
                 $recommended_percentage = floor(100 / $amount_of_times);
@@ -72,7 +75,8 @@ class DashboardController extends Controller
             'container_size',
             'container_recommendation',
             'recommended_remaining',
-            'recommended_percentage'
+            'recommended_percentage',
+            'link'
         ));
     }
 
