@@ -14,19 +14,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 10,
+                            "current_depth": 10,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 12,
+                            "current_depth": 12,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 15,
+                            "current_depth": 15,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -42,19 +42,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 25,
+                            "current_depth": 25,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 34,
+                            "current_depth": 34,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 67,
+                            "current_depth": 67,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -70,25 +70,25 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 24,
+                            "current_depth": 24,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 67,
+                            "current_depth": 67,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 89,
+                            "current_depth": 89,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         },
                         {
                             "id": 3,
-                            "remaining_distance": 140,
+                            "current_depth": 140,
                             "day": "2021-04-15",
                             "time": "23:59:59"
                         }
@@ -104,13 +104,13 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 90,
+                            "current_depth": 90,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 110,
+                            "current_depth": 110,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -132,19 +132,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 56,
+                            "current_depth": 56,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 78,
+                            "current_depth": 78,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 196,
+                            "current_depth": 196,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -166,19 +166,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 23,
+                            "current_depth": 23,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 43,
+                            "current_depth": 43,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 67,
+                            "current_depth": 67,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -194,19 +194,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 34,
+                            "current_depth": 34,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 67,
+                            "current_depth": 67,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 120,
+                            "current_depth": 120,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -228,19 +228,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 236,
+                            "current_depth": 236,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 589,
+                            "current_depth": 589,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 673,
+                            "current_depth": 673,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -256,19 +256,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 105,
+                            "current_depth": 105,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 250,
+                            "current_depth": 250,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 405,
+                            "current_depth": 405,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -284,19 +284,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 105,
+                            "current_depth": 105,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 150,
+                            "current_depth": 150,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 185,
+                            "current_depth": 185,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -318,31 +318,31 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 150,
+                            "current_depth": 150,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 340,
+                            "current_depth": 340,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 450,
+                            "current_depth": 450,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         },
                         {
                             "id": 3,
-                            "remaining_distance": 506,
+                            "current_depth": 506,
                             "day": "2021-04-16",
                             "time": "00:59:20"
                         },
                         {
                             "id": 4,
-                            "remaining_distance": 590,
+                            "current_depth": 590,
                             "day": "2021-04-16",
                             "time": "01:02:40"
                         }
@@ -358,31 +358,31 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 123,
+                            "current_depth": 123,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 236,
+                            "current_depth": 236,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 240,
+                            "current_depth": 240,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         },
                         {
                             "id": 3,
-                            "remaining_distance": 353,
+                            "current_depth": 353,
                             "day": "2021-04-16",
                             "time": "00:59:20"
                         },
                         {
                             "id": 4,
-                            "remaining_distance": 402,
+                            "current_depth": 402,
                             "day": "2021-04-16",
                             "time": "01:02:40"
                         }
@@ -404,19 +404,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 123,
+                            "current_depth": 123,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 154,
+                            "current_depth": 154,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 263,
+                            "current_depth": 263,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -432,19 +432,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 145,
+                            "current_depth": 145,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 122,
+                            "current_depth": 122,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 233,
+                            "current_depth": 233,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -466,19 +466,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 223,
+                            "current_depth": 223,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 256,
+                            "current_depth": 256,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 326,
+                            "current_depth": 326,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -494,19 +494,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 145,
+                            "current_depth": 145,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 122,
+                            "current_depth": 122,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 233,
+                            "current_depth": 233,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -528,19 +528,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 223,
+                            "current_depth": 223,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 256,
+                            "current_depth": 256,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 326,
+                            "current_depth": 326,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -556,19 +556,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 123,
+                            "current_depth": 123,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 456,
+                            "current_depth": 456,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 543,
+                            "current_depth": 543,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -590,19 +590,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 12,
+                            "current_depth": 12,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 34,
+                            "current_depth": 34,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 344,
+                            "current_depth": 344,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }
@@ -618,19 +618,19 @@
                     "tracking_data": [
                         {
                             "id": 0,
-                            "remaining_distance": 122,
+                            "current_depth": 122,
                             "day": "2021-04-15",
                             "time": "22:52:46"
                         },
                         {
                             "id": 1,
-                            "remaining_distance": 233,
+                            "current_depth": 233,
                             "day": "2021-04-15",
                             "time": "23:52:23"
                         },
                         {
                             "id": 2,
-                            "remaining_distance": 457,
+                            "current_depth": 457,
                             "day": "2021-04-15",
                             "time": "23:59:53"
                         }

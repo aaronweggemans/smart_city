@@ -15,6 +15,7 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Kreait\Firebase\Exception\DatabaseException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection;
 use App\User;
 
 class DashboardController extends Controller
@@ -39,9 +40,22 @@ class DashboardController extends Controller
         $latitude = $latlong['latitude'];
         $longitude = $latlong['longitude'];
 
-        $container_recommendation = ["Location", 10, "lat", "long"];
-        if($percentage >= 70) {
+        $container_recommendation = '';
+        $recommended_remaining = '';
+        $recommended_percentage = '';
+
+        if($percentage >= 80) {
             $container_recommendation = $helper->returnTheClosestArrayValue($latitude, $longitude);
+            $recommended_data_helper =  new Helper(Auth::user()->city_id, $container_recommendation[0]);
+            $recommended_remaining = $recommended_data_helper->containers[count($recommended_data_helper->containers) - 1]['current_depth'];
+
+            // dd($container_recommendation);
+            if($container_recommendation[0] != 'error') {
+                $amount_of_times = $container_recommendation[2] / $recommended_remaining;
+                $recommended_percentage = floor(100 / $amount_of_times);
+            }
+
+            // Gets the distance and rounds
         }
 
         $today = Carbon::now()->format('d M Y');
@@ -56,7 +70,9 @@ class DashboardController extends Controller
             'all_users',
             'all_registered_containers',
             'container_size',
-            'container_recommendation'
+            'container_recommendation',
+            'recommended_remaining',
+            'recommended_percentage'
         ));
     }
 
@@ -83,7 +99,7 @@ class DashboardController extends Controller
 
         foreach ($all_streets as $label) {
             array_push($container_distance_chart_for_all_cities_labels, $label['street_name']);
-            array_push($container_distance_chart_for_all_cities_data, end($label['tracking_data'])['remaining_distance']);
+            array_push($container_distance_chart_for_all_cities_data, end($label['tracking_data'])['current_depth']);
         }
 
         return response()->json(compact(

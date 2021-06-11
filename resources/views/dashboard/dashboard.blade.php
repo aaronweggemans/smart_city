@@ -12,10 +12,13 @@
         @else
             <div class="card mb-4" id="disappearing-message">
                 <div class="card-body bg-warning text-white">
-                    <h6>Container zit al redelijk vol, de dichtstbijzijnde container is:
-                        <u>{{ $container_recommendation[0] . ' ' . Auth::user()->getCityName()}}</u>
+                    <h6>Uw container zit bijna vol, neem de afval naar uw dichtstbijzijnde container die beschikbaar is. Deze is te vinden op:
+                        <u>{{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}}</u>
                     </h6>
-                    <a class="text-white" href="{{ route('dashboard_settings') }}">Verander locatie hier</a>
+                    <br>
+                    <h6>De container van 
+                        <u>{{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}}</u> zit momenteel op {{ $recommended_percentage }}% ({{ $recommended_remaining }}L / {{ $container_recommendation[2] }}L).  
+                    </h6>
                 </div>
             </div>
         @endif
@@ -76,7 +79,7 @@
                     <div class="box p-4 data-content" style="height: 100%; text-align: center;">
                         <i class="font-i fas fa-eye text-white"></i>
                         <img src="http://localhost:8000/img/trash_bin.png" class="png-image mb-3" alt="Amount of stuff">
-                        <h6 class="text-white text-center">{{ Auth::user()->getStreetName() }} has a capacity of {{ $container_size }}cm</h6>
+                        <h6 class="text-white text-center">{{ Auth::user()->getStreetName() }} has a capacity of {{ $container_size }}L</h6>
                     </div>
                 </div>
                 <div class="col-md-6">

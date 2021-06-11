@@ -53,7 +53,7 @@ class Helper extends Model
         $distance_in_array = [];
 
         foreach ($this->containers as $firebase_row) {
-            array_push($distance_in_array, $firebase_row['remaining_distance']);
+            array_push($distance_in_array, $firebase_row['current_depth']);
         }
 
         return $distance_in_array;
@@ -81,7 +81,7 @@ class Helper extends Model
     public function amountOfPercentTrashBinFull(): int
     {
         // Gets the distance from the last row in the database
-        $distance = end($this->containers)['remaining_distance'];
+        $distance = end($this->containers)['current_depth'];
 
         // Get the container depth
         $container_depth = collect($this->firebase
@@ -248,14 +248,14 @@ class Helper extends Model
 
     /**
      * Returns the amount value based on parameters
-     * @param $remaining_distance
+     * @param $current_depth
      * @param $container_depth
      * @return int
      */
-    public function percentage_of_bin($remaining_distance, $container_depth): int
+    public function percentage_of_bin($current_depth, $container_depth): int
     {
         // Devides the original size from the container through the distance
-        $amount_of_times = $container_depth / $remaining_distance;
+        $amount_of_times = $container_depth / $current_depth;
 
         // Gets the distance and rounds
         $test = floor(100 / $amount_of_times);
@@ -282,12 +282,13 @@ class Helper extends Model
             foreach($items_list as $converter)
             {
                 $temp_container_depth = $converter['container_depth'];
-                $remaining_distance = end($converter['tracking_data'])['remaining_distance'];
+                $current_depth = end($converter['tracking_data'])['current_depth'];
 
-                $percentage = $this->percentage_of_bin($remaining_distance, $temp_container_depth);
+                $percentage = $this->percentage_of_bin($current_depth, $temp_container_depth);
 
                 if($percentage < 70){
                     $update = [
+                        $converter['street_id'],
                         $converter['street_name'],
                         $converter['container_depth'],
                         $converter['latitude'],
@@ -317,7 +318,7 @@ class Helper extends Model
     }
 
     /**
-     * Calculates the most close by distance
+     * Calculates the most nearby container based on the distance
      * @param $a
      * @param $b
      * @return float
