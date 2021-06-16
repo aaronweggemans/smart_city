@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @if($percentage >= 70)
+    @if($percentage >= 85)
         @if($container_recommendation[0] == 'error')
             <div class="card mb-4" id="disappearing-message">
                 <div class="card-body bg-danger text-white">
