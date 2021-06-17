@@ -36,10 +36,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Application|Factory|Response|View
      */
-    public function show($id)
+    public function show(int $id)
     {
         $user = User::find($id);
         $roles = Role::all();
@@ -75,10 +75,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Application|RedirectResponse|Response|Redirector
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         User::destroy($id);
         return redirect('/dashboard/users')->with('message', 'User is removed!');

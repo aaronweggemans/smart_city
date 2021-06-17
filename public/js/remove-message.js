@@ -1,5 +1,5 @@
 $(document).ready(() => {
     setTimeout(() => {
-        $('#disappearing-message').fadeOut("slow");
+        $('#disappearing-message').animate({width:'toggle'},600);
     }, 10000)
 });

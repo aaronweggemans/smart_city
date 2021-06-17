@@ -59,9 +59,9 @@
                 <i class="fas fa-location-arrow fa-sm center-sidebar-item"></i> Locations
             </a>
         </li>
-        <li class="{{ Request::is('dashboard/reports') ? 'active' : '' }}">
-            <a href="{{ route('dashboard_all_reports') }}">
-                <i class="fas fa-file-pdf fa-sm center-sidebar-item"></i> Reports
+        <li class="{{ Request::is('dashboard/full/container') ? 'active' : '' }}">
+            <a href="{{ route('dashboard_all_full_containers') }}">
+                <i class="fas fa-dumpster fa-sm center-sidebar-item"></i> Full Containers
             </a>
         </li>
         @endif

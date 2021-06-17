@@ -40,29 +40,28 @@ class DashboardController extends Controller
         $latitude = $latlong['latitude'];
         $longitude = $latlong['longitude'];
 
-        $container_recommendation = '';
-        $recommended_remaining = '';
-        $recommended_percentage = '';
+        $container_recommendation = ["error", "error", 230, 1, 1];
+        $recommended_remaining = 1;
+        $recommended_percentage = 1.0;
         $link = '';
+        $link_in_iframe = '';
 
         if($percentage >= 85) {
             $container_recommendation = $helper->returnTheClosestArrayValue($latitude, $longitude);
             $recommended_data_helper =  new Helper(Auth::user()->city_id, $container_recommendation[0]);
 
             $recommended_remaining = $recommended_data_helper->containers[count($recommended_data_helper->containers) - 1]['current_depth'];
-
-            $link = "https://www.google.nl/maps/dir/$latitude,$longitude/$container_recommendation[3],$container_recommendation[4]";  
+            $link = "https://www.google.nl/maps/dir/$latitude,$longitude/$container_recommendation[3],$container_recommendation[4]";
+            $link_in_iframe = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyA1s66kXMm6obk6K67NcL1zvTNwgAC7KTU&origin=$latitude,$longitude&destination=$container_recommendation[3],$container_recommendation[4]&zoom=13";
 
             if($container_recommendation[0] != 'error') {
                 $amount_of_times = $container_recommendation[2] / $recommended_remaining;
                 $recommended_percentage = floor(100 / $amount_of_times);
             }
-
-            // Gets the distance and rounds
         }
 
         $today = Carbon::now()->format('d M Y');
-        $all_users = User::where('role_id', '1')->count();
+        $all_users = User::all()->count();
         $all_registered_containers = $helper->getAmountOfRegisteredContainer();
         $container_size = $helper->getContainerDepth();
 
@@ -76,7 +75,8 @@ class DashboardController extends Controller
             'container_recommendation',
             'recommended_remaining',
             'recommended_percentage',
-            'link'
+            'link',
+            'link_in_iframe'
         ));
     }
 

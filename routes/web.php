@@ -46,8 +46,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'dashboard'], function () {
         });
 
         // Reports Resource
-        Route::group(['prefix' => 'reports'], function () {
-            Route::get('/', 'ReportsController@index')->name('dashboard_all_reports');
+        Route::group(['prefix' => 'full/container'], function () {
+            Route::get('/', 'FullContainerController@index')->name('dashboard_all_full_containers');
+            Route::delete('/', 'FullContainerController@destroy')->name('dashboard_delete_full_container');
         });
 
         // Location Resource

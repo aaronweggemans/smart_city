@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Kreait\Firebase\Exception\DatabaseException;
@@ -24,7 +26,7 @@ class Helper extends Model
      * @param int $street_id
      * @throws DatabaseException
      */
-    public function __construct($city_id = 0, $street_id = 0)
+    public function __construct(int $city_id = 0, int $street_id = 0)
     {
         $this->city_id = $city_id;
         $this->street_id = $street_id;
@@ -80,19 +82,24 @@ class Helper extends Model
      */
     public function amountOfPercentTrashBinFull(): int
     {
-        // Gets the distance from the last row in the database
-        $distance = end($this->containers)['current_depth'];
+        try {
+            // Gets the distance from the last row in the database
+            $distance = end($this->containers)['current_depth'];
 
-        // Get the container depth
-        $container_depth = collect($this->firebase
-            ->firstWhere('city_id', Auth::user()->city_id)['containers'])
-            ->firstWhere('street_id', Auth::user()->street_id)['container_depth'];
+            // Get the container depth
+            $container_depth = collect($this->firebase
+                ->firstWhere('city_id', Auth::user()->city_id)['containers'])
+                ->firstWhere('street_id', Auth::user()->street_id)['container_depth'];
 
-        // Devides the original size from the container through the distance
-        $amount_of_times = $container_depth / $distance;
+            // Divides the original size from the container through the distance
+            $amount_of_times = $container_depth / $distance;
 
-        // Gets the distance and rounds
-        $test = floor(100 / $amount_of_times);
+            // Gets the distance and rounds
+            $test = floor(100 / $amount_of_times);
+        } catch (Exception $e) {
+            // right now the numbers are properly 0
+            $test = 0;
+        }
 
         // Returns an integer
         return (intval($test));
@@ -106,7 +113,7 @@ class Helper extends Model
     {
         return collect($this->firebase
             ->firstWhere('city_id', Auth::user()->city_id)['containers'])
-            ->firstWhere('street_id', Auth::user()->street_id)['container_depth'];;
+            ->firstWhere('street_id', Auth::user()->street_id)['container_depth'];
     }
 
     /**
@@ -122,14 +129,6 @@ class Helper extends Model
         }
 
         return $amount_of_containers;
-    }
-
-    /**
-     * @return Collection
-     */
-    public function getAllLocations(): Collection
-    {
-        return $this->firebase;
     }
 
     /**
@@ -156,7 +155,7 @@ class Helper extends Model
      * @param $city_id
      * @return mixed
      */
-    public function getAllStreetsWhere(int $city_id)
+    public function getAllStreetsWhere(int $city_id): array
     {
         return $this->firebase->firstWhere('city_id', $city_id)['containers'];
     }
@@ -177,7 +176,7 @@ class Helper extends Model
      * @param int $street_id
      * @return array
      */
-    public function getContainerWhere(int $city_id, int $street_id) : array
+    public function getContainerWhere(int $city_id, int $street_id): array
     {
         return collect($this->firebase->firstWhere('city_id', $city_id)['containers'])
             ->firstWhere('street_id', $street_id);
@@ -254,14 +253,81 @@ class Helper extends Model
      */
     public function percentage_of_bin($current_depth, $container_depth): int
     {
-        // Devides the original size from the container through the distance
-        $amount_of_times = $container_depth / $current_depth;
+        try {
+            // Devides the original size from the container through the distance
+            $amount_of_times = $container_depth / $current_depth;
 
-        // Gets the distance and rounds
-        $test = floor(100 / $amount_of_times);
+            // Gets the distance and rounds
+            $test = floor(100 / $amount_of_times);
+        } catch (Exception $e) {
+            $test = 0;
+        }
 
         // Returns an integer
         return (intval($test));
+    }
+
+    /**
+     * Retrieves all the containers where more than 85 percent
+     */
+    public function almostAllFullContainers(): collection
+    {
+        $all_containers_with_percentage = [];
+
+        foreach ($this->firebase as $city_container) {
+            $city_id = $city_container['city_id'];
+
+            foreach ($city_container['containers'] as $container) {
+                $container_depth = $container['container_depth'];
+                $current_depth_of_container = end($container['tracking_data'])['current_depth'];
+
+                $percentage = $this->percentage_of_bin($current_depth_of_container, $container_depth);
+
+                if ($percentage >= 85) {
+                    $container['percentage'] = $percentage;
+                    $container['city_id'] = $city_id;
+
+                    array_push($all_containers_with_percentage, $container);
+                }
+            }
+        }
+
+        return collect($all_containers_with_percentage);
+    }
+
+    /**
+     * Cleans up a full container
+     *
+     * @param $city_id
+     * @param $street_id
+     * @return bool
+     * @throws DatabaseException
+     */
+    public function deleteFullContainer(int $city_id, int $street_id): bool
+    {
+        try {
+            $this->initialize
+                ->getReference('cities')
+                ->getChild($city_id)
+                ->getChild('containers')
+                ->getChild($street_id)
+                ->getChild("tracking_data")
+                ->remove()
+                ->set([
+                    0 => [
+                        "current_depth" => 0,
+                        "day" => Carbon::now()->format('Y-m-d'),
+                        "id" => 0,
+                        "time" => Carbon::now()->toTimeString()
+                    ]
+                ]);
+
+            $check = true;
+        } catch (Exception $e) {
+            $check = false;
+        }
+
+        return $check;
     }
 
     /**
@@ -276,17 +342,16 @@ class Helper extends Model
         $list_of_sub_locations = [];
         $items_list = $this->firebase->firstWhere('city_id', $this->city_id)['containers'];
 
-        try{
+        try {
             // Removes its own street
             unset($items_list[Auth::user()->street_id]);
-            foreach($items_list as $converter)
-            {
+            foreach ($items_list as $converter) {
                 $temp_container_depth = $converter['container_depth'];
                 $current_depth = end($converter['tracking_data'])['current_depth'];
 
                 $percentage = $this->percentage_of_bin($current_depth, $temp_container_depth);
 
-                if($percentage < 70){
+                if ($percentage < 70) {
                     $update = [
                         $converter['street_id'],
                         $converter['street_name'],
@@ -297,24 +362,24 @@ class Helper extends Model
                     array_push($list_of_sub_locations, $update);
                 }
             }
-        }
-        catch(\Exception $exception) {
+        } catch (Exception $exception) {
             dd($exception);
         }
 
-        if(!empty($list_of_sub_locations)) {
-            $distances = array_map(function($item) use($ref) {
+        if (!empty($list_of_sub_locations)) {
+            $distances = array_map(function ($item) use ($ref) {
                 $a = array_slice($item, -2);
                 return $this->calculateDistance($a, $ref);
             }, $list_of_sub_locations);
 
             asort($distances);
 
-            return $list_of_sub_locations[key($distances)];
+            $list_of_sub_locations = $list_of_sub_locations[key($distances)];
+        } else {
+            $list_of_sub_locations = ["error", "error", 230, 1, 1];
         }
-        else {
-            return ["error"];
-        }
+
+        return $list_of_sub_locations;
     }
 
     /**

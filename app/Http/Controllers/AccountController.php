@@ -22,7 +22,7 @@ class AccountController extends Controller
     public function settings()
     {
         $helper = new Helper;
-        $cities = $helper->getAllLocations();
+        $cities = $helper->firebase;
         $streets = $helper->getAllStreetsWhere(Auth::user()->city_id);
 
         return view('dashboard.account.index', compact('cities', 'streets'));

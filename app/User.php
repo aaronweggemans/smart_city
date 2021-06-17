@@ -6,7 +6,6 @@ use Carbon\Traits\Timestamp;
 use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Auth;
 use Kreait\Firebase\Factory;
 use Illuminate\Support\Collection;
 
@@ -42,15 +41,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-
     /**
-     * Retuns the users role name
-     * @return HigherOrderBuilderProxy|mixed
+     * Returns the users role name
      */
-    public function getRoleName()
+    public function getRoleName(): string
     {
-        $item = $this->belongsTo(Role::class, 'role_id', 'id');
-        return $item->first()->name;
+        return $this->belongsTo(Role::class, 'role_id', 'id')->first()->name;
     }
 
     /**
@@ -95,9 +91,7 @@ class User extends Authenticatable
     {
         $imagePlaceholder = asset('storage/images/profiles') . '/' . $this->avatar;
 
-        if(empty($this->avatar)) {
-            $imagePlaceholder = asset('img/user-image-placeholder.png');
-        }
+        if(empty($this->avatar)) $imagePlaceholder = asset('img/user-image-placeholder.png');
 
         return $imagePlaceholder;
     }

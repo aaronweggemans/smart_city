@@ -27,7 +27,7 @@ class LocationController extends Controller
     public function index()
     {
         $helper = new Helper();
-        $locations = $this->paginate($helper->getAllLocations(), 5);
+        $locations = $this->paginate($helper->firebase, 5);
         $locations->setPath('locations');
 
         return view('dashboard.locations.index', compact('locations'));
