@@ -28,6 +28,9 @@ class Helper extends Model
      */
     public function __construct(int $city_id = 0, int $street_id = 0)
     {
+        // Geen idee waarom deze shit moet
+        parent::__construct();
+
         $this->city_id = $city_id;
         $this->street_id = $street_id;
 
@@ -78,34 +81,6 @@ class Helper extends Model
     }
 
     /**
-     * Counts how many percent the container is full
-     */
-    public function amountOfPercentTrashBinFull(): int
-    {
-        try {
-            // Gets the distance from the last row in the database
-            $distance = end($this->containers)['current_depth'];
-
-            // Get the container depth
-            $container_depth = collect($this->firebase
-                ->firstWhere('city_id', Auth::user()->city_id)['containers'])
-                ->firstWhere('street_id', Auth::user()->street_id)['container_depth'];
-
-            // Divides the original size from the container through the distance
-            $amount_of_times = $container_depth / $distance;
-
-            // Gets the distance and rounds
-            $test = floor(100 / $amount_of_times);
-        } catch (Exception $e) {
-            // right now the numbers are properly 0
-            $test = 0;
-        }
-
-        // Returns an integer
-        return (intval($test));
-    }
-
-    /**
      * Returns the container depth in a integer
      * @return int
      */
@@ -150,34 +125,30 @@ class Helper extends Model
 
     /**
      * Returns all the containers based on the city id
-     * @param $city_id
      * @return mixed
      */
-    public function getAllStreetsWhere(int $city_id): array
+    public function getAllStreetsWhere(): array
     {
-        return $this->firebase->firstWhere('city_id', $city_id)['containers'];
+        return $this->firebase->firstWhere('city_id', $this->city_id)['containers'];
     }
 
     /**
      * Returns the city based on the city id
-     * @param $city_id
      * @return mixed
      */
-    public function getCityWhere(int $city_id): array
+    public function getCityWhere(): array
     {
-        return $this->firebase->firstWhere('city_id', $city_id);
+        return $this->firebase->firstWhere('city_id', $this->city_id);
     }
 
     /**
      * Retrieves the container based on the city id and street id
-     * @param int $city_id
-     * @param int $street_id
      * @return array
      */
-    public function getContainerWhere(int $city_id, int $street_id): array
+    public function getContainerWhere(): array
     {
-        return collect($this->firebase->firstWhere('city_id', $city_id)['containers'])
-            ->firstWhere('street_id', $street_id);
+        return collect($this->firebase->firstWhere('city_id', $this->city_id)['containers'])
+            ->firstWhere('street_id', $this->street_id);
     }
 
     /**
@@ -206,17 +177,15 @@ class Helper extends Model
 
     /**
      * Removes a container from firebase
-     * @param $city_id
-     * @param $street_id
      * @throws DatabaseException
      */
-    public function removeContainer($city_id, $street_id)
+    public function removeContainer()
     {
         $this->initialize
             ->getReference('cities')
-            ->getChild($city_id)
+            ->getChild($this->city_id)
             ->getChild('containers')
-            ->getChild($street_id)
+            ->getChild($this->street_id)
             ->remove();
     }
 
@@ -249,7 +218,7 @@ class Helper extends Model
      * @param $container_depth
      * @return int
      */
-    public function percentage_of_bin($current_depth, $container_depth): int
+    public function percentageOfBin($current_depth, $container_depth): int
     {
         try {
             // Devides the original size from the container through the distance
@@ -279,7 +248,7 @@ class Helper extends Model
                 $container_depth = $container['container_depth'];
                 $current_depth_of_container = end($container['tracking_data'])['current_depth'];
 
-                $percentage = $this->percentage_of_bin($current_depth_of_container, $container_depth);
+                $percentage = $this->percentageOfBin($current_depth_of_container, $container_depth);
 
                 if ($percentage >= 85) {
                     $container['percentage'] = $percentage;
@@ -296,19 +265,17 @@ class Helper extends Model
     /**
      * Cleans up a full container
      *
-     * @param $city_id
-     * @param $street_id
      * @return bool
      * @throws DatabaseException
      */
-    public function deleteFullContainer(int $city_id, int $street_id): bool
+    public function deleteFullContainer(): bool
     {
         try {
             $this->initialize
                 ->getReference('cities')
-                ->getChild($city_id)
+                ->getChild($this->city_id)
                 ->getChild('containers')
-                ->getChild($street_id)
+                ->getChild($this->street_id)
                 ->getChild("tracking_data")
                 ->remove()
                 ->set([
@@ -336,65 +303,68 @@ class Helper extends Model
      */
     public function returnTheClosestArrayValue($lat, $long): array
     {
-        $ref = [$lat, $long];
-        $list_of_sub_locations = [];
-
         $items_list = $this->firebase->firstWhere('city_id', $this->city_id)['containers'];
+        $list_of_sub_locations = [];
 
         try {
             // Removes its own street
             unset($items_list[Auth::user()->street_id]);
 
-            foreach ($items_list as $converter) {
-                $temp_container_depth = $converter['container_depth'];
-                $current_depth = end($converter['tracking_data'])['current_depth'];
+            foreach ($items_list as $container_check) {
+                $temp_container_depth = $container_check['container_depth'];
+                $current_depth = end($container_check['tracking_data'])['current_depth'];
 
-                if ($this->percentage_of_bin($current_depth, $temp_container_depth) < 70) {
+                if ($this->percentageOfBin($current_depth, $temp_container_depth) < 85) {
                     array_push($list_of_sub_locations, [
-                        $converter['street_id'],
-                        $converter['street_name'],
-                        $converter['container_depth'],
-                        $converter['latitude'],
-                        $converter['longitude']
+                        "street_id" => $container_check['street_id'],
+                        "street_name" => $container_check['street_name'],
+                        "container_depth" => $container_check['container_depth'],
+                        "latitude" => $container_check['latitude'],
+                        "longitude" => $container_check['longitude']
                     ]);
                 }
             }
         } catch (Exception $exception) {
-            dd($exception);
+            $list_of_sub_locations = ["error" => $exception->getMessage()];
         }
 
         if (!empty($list_of_sub_locations)) {
-            $distances = array_map(function ($item) use ($ref) {
-                $a = array_slice($item, -2);
-                return $this->calculateDistance($a, $ref);
+            $distances = array_map(function ($item) use ($lat, $long) {
+                $row_distance = array_slice($item, -2);
+                $comparison = ["latitude" => $lat, "longitude" => $long];
+                return $this->calculateDistance($row_distance, $comparison);
             }, $list_of_sub_locations);
 
             asort($distances);
 
             $list_of_sub_locations = $list_of_sub_locations[key($distances)];
         } else {
-            $list_of_sub_locations = [0, 0, 0, 0, 0];
+            $list_of_sub_locations = ["error" => "Er zijn geen sublocaties meer"];
         }
-
 
         return $list_of_sub_locations;
     }
 
     /**
      * Calculates the most nearby container based on the distance
-     * @param $a
-     * @param $b
+     * @param $row_distance
+     * @param $comparison
      * @return float
      */
-    public function calculateDistance($a, $b): float
+    public function calculateDistance($row_distance, $comparison): float
     {
-        list($lat1, $lon1) = $a;
-        list($lat2, $lon2) = $b;
+        $theta = $row_distance['longitude'] - $comparison['longitude'];
 
-        $theta = $lon1 - $lon2;
-        $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+        $dist = sin(deg2rad($row_distance['latitude'])) *
+            sin(deg2rad($comparison['latitude'])) +
+            cos(deg2rad($row_distance['latitude'])) *
+            cos(deg2rad($comparison['latitude'])) *
+            cos(deg2rad($theta));
+
         $dist = acos($dist);
+
         $dist = rad2deg($dist);
+
         return $dist * 60 * 1.1515;
     }
 }

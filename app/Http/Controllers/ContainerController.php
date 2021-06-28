@@ -15,26 +15,6 @@ use Kreait\Firebase\Exception\DatabaseException;
 class ContainerController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param Request $request
@@ -64,25 +44,15 @@ class ContainerController extends Controller
      * @param $city_id
      * @param $street_id
      * @return Application|Factory|Response|View
+     * @throws DatabaseException
      */
     public function show($city_id, $street_id)
     {
-        $helper = new Helper();
-        $container = $helper->getContainerWhere($city_id, $street_id);
-        $city = $helper->getCityWhere($city_id);
+        $helper = new Helper($city_id, $street_id);
+        $container = $helper->getContainerWhere();
+        $city = $helper->getCityWhere();
 
         return view('dashboard.containers.show', compact('container', 'city'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -119,8 +89,8 @@ class ContainerController extends Controller
      */
     public function destroy($city_id, $street_id): RedirectResponse
     {
-        $helper = new Helper;
-        $helper->removeContainer($city_id, $street_id);
+        $helper = new Helper($city_id, $street_id);
+        $helper->removeContainer();
 
         return redirect('/dashboard/locations/')->with('message', 'Container is removed!');
     }

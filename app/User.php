@@ -3,12 +3,23 @@
 namespace App;
 
 use Carbon\Traits\Timestamp;
-use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Kreait\Firebase\Factory;
 use Illuminate\Support\Collection;
 
+/**
+ * Class User
+ * @package App
+ *
+ * @property $name,
+ * @property $role_id,
+ * @property $email,
+ * @property $city_id,
+ * @property $street_id,
+ * @property $password,
+ * @property $avatar
+ */
 class User extends Authenticatable
 {
     use Notifiable;

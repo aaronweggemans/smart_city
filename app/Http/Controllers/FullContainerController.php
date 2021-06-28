@@ -42,8 +42,8 @@ class FullContainerController extends Controller
             'city_id' => 'required'
         ]);
 
-        $helper = new Helper();
-        $check = $helper->deleteFullContainer($request->city_id, $request->street_id);
+        $helper = new Helper($request->city_id, $request->street_id);
+        $check = $helper->deleteFullContainer();
 
         $message = "There went something wrong!";
 

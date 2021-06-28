@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper;
 use App\Role;
 use App\User;
 use Illuminate\Contracts\Foundation\Application;

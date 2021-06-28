@@ -3,7 +3,7 @@
 @section('content')
 
     @if($percentage >= 85)
-        @if(!is_int($container_recommendation[0]))
+        @if(isset($container_recommendation['error']))
             <div class="message-box" id="disappearing-message">
                 <div class="card-body bg-danger text-white rounded-left">
                     <h6 class="m-0">Alle vuilnisbakken in uw stad zitten vol!</h6>
@@ -67,7 +67,11 @@
                 <canvas id="garbage_all_chart"></canvas>
             </div>
             @if($percentage >= 85)
-                @if(is_int($container_recommendation[0]))
+                @if(isset($container_recommendation['error']))
+                    <div class="box p-3 bg-danger mb-4 text-center text-white p-4">
+                        <h1>Alle containers in uw stad zijn vol!</h1>
+                    </div>
+                @else
                     <div class="box p-3 data-content mb-4">
                         <iframe
                             width="100%"
@@ -77,10 +81,6 @@
                             allowfullscreen
                             src="{{ $link_in_iframe }}" title="Route to the location">
                         </iframe>
-                    </div>
-                @else
-                    <div class="box p-3 bg-danger mb-4 text-center text-white p-4">
-                        <h1>Alle containers in uw stad zijn vol!</h1>
                     </div>
                 @endif
             @else
@@ -124,41 +124,44 @@
                     <div id="chart_div"></div>
                 </div>
                 @if($percentage >= 85)
-                    @if(is_int($container_recommendation[0]))
+                    @if(isset($container_recommendation['error']))
+                        <div class="box bg-danger text-white ml-3 mr-3 mb-4 p-3">
+                            <h6>Alle containers in uw stad zijn vol!</h6>
+                            <br>
+                            <h6>Als u nog afval heeft die weg gegooid moet worden, ben u genoodzaakt om een andere
+                                container
+                                te gebruiken in een andere stad!</h6>
+                        </div>
+                    @else
                         <div class="box bg-warning text-white ml-3 mr-3 mb-4 p-3">
                             <h6>Uw container zit bijna vol, neem de afval naar uw dichtstbijzijnde container die
                                 beschikbaar
                                 is. Deze is te vinden op
-                                locatie: {{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}}</h6>
+                                locatie: {{ $container_recommendation["street_name"] . ' ' . Auth::user()->getCityName()}}</h6>
                             <br>
-                            <h6>De container van {{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}}
+                            <h6>De container
+                                van {{ $container_recommendation["street_name"] . ' ' . Auth::user()->getCityName()}}
                                 zit
                                 momenteel op {{ $recommended_percentage }}% ({{ $recommended_remaining }}L
-                                / {{ $container_recommendation[2] }}L).
+                                / {{ $container_recommendation["container_depth"] }}L).
                             </h6>
                             <a href="{{ $link }}" class="text-white" target="_blank">Druk hier om
-                                naar {{ $container_recommendation[1] . ' ' . Auth::user()->getCityName()}} te
+                                naar {{ $container_recommendation["street_name"] . ' ' . Auth::user()->getCityName()}} te
                                 navigeren</a>
                         </div>
-                    @else
-                        <div class="box bg-danger text-white ml-3 mr-3 mb-4 p-3">
-                            <h6>Alle containers in uw stad zijn vol!</h6>
-                            <br>
-                            <h6>Als u nog afval heeft die weg gegooid moet worden, ben u genoodzaakt om een andere container
-                                te gebruiken in een andere stad!</h6>
-                        </div>
                     @endif
+                @endif
 
-                    @else
-                        <div class="box bg-success text-white ml-3 mr-3 mb-4 p-3">
-                            <h6>Alles is op het moment up to date</h6>
-                            <br>
-                            <h6>U kunt gewoon gebruik maken van uw eigen container in de
-                                wijk {{ Auth::user()->getStreetName() . ' ' . Auth::user()->getCityName()}}. Deze
-                                container zit momenteel op {{ $percentage }}%.
-                            </h6>
-                        </div>
-                    @endif
+                @if ($percentage < 85)
+                    <div class="box bg-success text-white ml-3 mr-3 mb-4 p-3">
+                        <h6>Alles is op het moment up to date</h6>
+                        <br>
+                        <h6>U kunt gewoon gebruik maken van uw eigen container in de
+                            wijk {{ Auth::user()->getStreetName() . ' ' . Auth::user()->getCityName()}}. Deze
+                            container zit momenteel op {{ $percentage }}%.
+                        </h6>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
