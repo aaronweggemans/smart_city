@@ -19,6 +19,7 @@ use Illuminate\Support\Collection;
  * @property $street_id,
  * @property $password,
  * @property $avatar
+ * @method static find($id)
  */
 class User extends Authenticatable
 {
