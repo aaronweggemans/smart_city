@@ -3,15 +3,15 @@
 @section('content')
 
     @if($percentage >= 85)
-        @if($container_recommendation[0] == 'error')
+        @if(!is_int($container_recommendation[0]))
             <div class="message-box" id="disappearing-message">
-                <div class="card-body bg-danger text-white">
+                <div class="card-body bg-danger text-white rounded-left">
                     <h6 class="m-0">Alle vuilnisbakken in uw stad zitten vol!</h6>
                 </div>
             </div>
         @else
             <div class="message-box" id="disappearing-message">
-                <div class="card-body bg-warning text-white">
+                <div class="card-body bg-warning text-white rounded-left">
                     <h6 class="m-0">Uw heeft een melding!</h6>
                 </div>
             </div>
@@ -67,7 +67,7 @@
                 <canvas id="garbage_all_chart"></canvas>
             </div>
             @if($percentage >= 85)
-                @if($container_recommendation[0] != 'error')
+                @if(is_int($container_recommendation[0]))
                     <div class="box p-3 data-content mb-4">
                         <iframe
                             width="100%"
@@ -124,7 +124,7 @@
                     <div id="chart_div"></div>
                 </div>
                 @if($percentage >= 85)
-                    @if($container_recommendation[0] != 'error')
+                    @if(is_int($container_recommendation[0]))
                         <div class="box bg-warning text-white ml-3 mr-3 mb-4 p-3">
                             <h6>Uw container zit bijna vol, neem de afval naar uw dichtstbijzijnde container die
                                 beschikbaar

@@ -124,9 +124,7 @@ class Helper extends Model
     {
         $amount_of_containers = 0;
 
-        foreach ($this->firebase as $city) {
-            $amount_of_containers += count($city['containers']);
-        }
+        foreach ($this->firebase as $city) $amount_of_containers += count($city['containers']);
 
         return $amount_of_containers;
     }
@@ -340,26 +338,25 @@ class Helper extends Model
     {
         $ref = [$lat, $long];
         $list_of_sub_locations = [];
+
         $items_list = $this->firebase->firstWhere('city_id', $this->city_id)['containers'];
 
         try {
             // Removes its own street
             unset($items_list[Auth::user()->street_id]);
+
             foreach ($items_list as $converter) {
                 $temp_container_depth = $converter['container_depth'];
                 $current_depth = end($converter['tracking_data'])['current_depth'];
 
-                $percentage = $this->percentage_of_bin($current_depth, $temp_container_depth);
-
-                if ($percentage < 70) {
-                    $update = [
+                if ($this->percentage_of_bin($current_depth, $temp_container_depth) < 70) {
+                    array_push($list_of_sub_locations, [
                         $converter['street_id'],
                         $converter['street_name'],
                         $converter['container_depth'],
                         $converter['latitude'],
                         $converter['longitude']
-                    ];
-                    array_push($list_of_sub_locations, $update);
+                    ]);
                 }
             }
         } catch (Exception $exception) {
@@ -376,8 +373,9 @@ class Helper extends Model
 
             $list_of_sub_locations = $list_of_sub_locations[key($distances)];
         } else {
-            $list_of_sub_locations = ["error", "error", 230, 1, 1];
+            $list_of_sub_locations = [0, 0, 0, 0, 0];
         }
+
 
         return $list_of_sub_locations;
     }

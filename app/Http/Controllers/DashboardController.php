@@ -9,13 +9,12 @@
 namespace App\Http\Controllers;
 
 use App\Helper;
+use Exception;
 use Illuminate\Contracts\Support\Renderable;
-use App\Charts\ContainerDistanceChart;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Kreait\Firebase\Exception\DatabaseException;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Collection;
 use App\User;
 
 class DashboardController extends Controller
@@ -29,35 +28,40 @@ class DashboardController extends Controller
     public function index(): Renderable
     {
         $helper = new Helper(Auth::user()->city_id, Auth::user()->street_id);
+
         $percentage = $helper->amountOfPercentTrashBinFull();
+        $user_container = $helper->getContainerWhere(Auth::user()->city_id, Auth::user()->street_id);
 
-        $chart = new ContainerDistanceChart(
-            $helper->firebaseDistanceLabels(),
-            $helper->firebaseDistanceData()
-        );
-
-        $latlong = $helper->getContainerWhere(Auth::user()->city_id, Auth::user()->street_id);
-        $latitude = $latlong['latitude'];
-        $longitude = $latlong['longitude'];
-
-        $container_recommendation = ["error", "error", 230, 1, 1];
         $recommended_remaining = 1;
         $recommended_percentage = 1.0;
         $link = '';
         $link_in_iframe = '';
 
-        if($percentage >= 85) {
-            $container_recommendation = $helper->returnTheClosestArrayValue($latitude, $longitude);
-            $recommended_data_helper =  new Helper(Auth::user()->city_id, $container_recommendation[0]);
+        $container_recommendation = $helper->returnTheClosestArrayValue(
+            $user_container['latitude'],
+            $user_container['longitude']
+        );
 
+        if ($percentage >= 85 && is_int($container_recommendation[0])) {
+            $recommended_data_helper = new Helper(Auth::user()->city_id, $container_recommendation[0]);
             $recommended_remaining = $recommended_data_helper->containers[count($recommended_data_helper->containers) - 1]['current_depth'];
-            $link = "https://www.google.nl/maps/dir/$latitude,$longitude/$container_recommendation[3],$container_recommendation[4]";
-            $link_in_iframe = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyA1s66kXMm6obk6K67NcL1zvTNwgAC7KTU&origin=$latitude,$longitude&destination=$container_recommendation[3],$container_recommendation[4]&zoom=13";
 
-            if($container_recommendation[0] != 'error') {
+            try {
                 $amount_of_times = $container_recommendation[2] / $recommended_remaining;
                 $recommended_percentage = floor(100 / $amount_of_times);
+            } catch (Exception $e) {
+                $recommended_percentage = 0;
             }
+
+            $link = "https://www.google.nl/maps/dir/" .
+                $user_container['latitude'] . "," .
+                $user_container['longitude'] . "/" .
+                $container_recommendation[3] . "," .
+                $container_recommendation[4];
+
+            $link_in_iframe = "https://www.google.com/maps/embed/v1/directions?key=AIzaSyA1s66kXMm6obk6K67NcL1zvTNwgAC7KTU&origin=" .
+                $user_container['latitude'] . "," .
+                $user_container['longitude'] . "&destination=$container_recommendation[3],$container_recommendation[4]&zoom=13";
         }
 
         $today = Carbon::now()->format('d M Y');
@@ -66,7 +70,6 @@ class DashboardController extends Controller
         $container_size = $helper->getContainerDepth();
 
         return view('dashboard.dashboard', compact(
-            'chart',
             'percentage',
             'today',
             'all_users',
