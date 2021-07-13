@@ -158,21 +158,12 @@ class Helper extends Model
      */
     public function editContainer($request)
     {
-        $request_data = [
-            "container_depth" => $request->container_depth,
-            "latitude" => $request->latitude,
-            "longitude" => $request->longitude,
-            "status" => true,
-            "street_id" => $request->street_id,
-            "street_name" => $request->street_name,
-        ];
-
         $this->initialize
             ->getReference('cities')
             ->getChild($request->city_id)
             ->getChild('containers')
             ->getChild($request->street_id)
-            ->update($request_data);
+            ->update($request);
     }
 
     /**

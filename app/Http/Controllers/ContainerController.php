@@ -73,8 +73,17 @@ class ContainerController extends Controller
             "longitude" => "required",
         ]);
 
+        $request_data = [
+            "container_depth" => $request->container_depth,
+            "latitude" => $request->latitude,
+            "longitude" => $request->longitude,
+            "status" => true,
+            "street_id" => $request->street_id,
+            "street_name" => $request->street_name,
+        ];
+
         $helper = new Helper;
-        $helper->editContainer($request);
+        $helper->editContainer($request_data);
 
         return Redirect::back()->with('message', 'Container is updated!');
     }
